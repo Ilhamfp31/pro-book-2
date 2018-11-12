@@ -1,0 +1,76 @@
+body{
+	font-size: 20px;
+	font-family: 'Karla', sans-serif;
+}
+
+table{
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top : 15px;
+}
+
+tr{
+	height:10%;
+}
+
+td{
+	width: 50%;
+}
+
+h1{
+	text-align: center;
+	padding-top: 20px;
+}
+
+.background{
+	margin: 10% auto;
+	width: 30%;
+	height: 100%;
+	padding: 1px 1px 13px 1px;
+	background: #00b8e6;
+}
+.container{
+	margin : 10px 10px 10px 10px;
+	background-image: url("/view/asset/download.png");
+	opacity: 0.98;
+	overflow-x: auto;
+}
+
+.align-right{
+	text-align: right;
+	padding-right: 20px;
+}
+.button-login{
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+#submit{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding: 7px 7px 7px 7px;
+	border-color: orange;
+	border-width: 1.7px;
+	background-color: white;
+	border-radius: 11px;
+	color: rgb(235,79,8);
+	font-size: 25px;
+	cursor: pointer;
+}
+
+#already{
+	font-size: 15px;
+	margin: 5px 10px 10px 15px;
+}
+#username{
+	width: 70%;
+	font-size: 15px;
+	padding: 2px 5px 2px 5px;
+	margin-top: 5px;
+}
+#password{
+	width: 70%;
+	font-size: 15px;
+	padding: 2px 5px 2px 5px;
+	margin-top: 5px;
+}

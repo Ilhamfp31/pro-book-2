@@ -1,0 +1,205 @@
+html,body {
+    margin:0;
+    padding:0;
+    overflow-x: hidden; 
+}
+body {
+    font-size: 30px;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    /*padding-top: 1px;*/
+    font-family: 'Karla', sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+    color: rgb(235,79,8);
+}
+
+h2 {
+    font-size: 2em;
+    color: rgb(235, 79, 8);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: rgb(77, 77, 77);
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.8em;
+}
+
+h4 {
+    color: rgb(93, 93, 93);
+    margin: 0;
+    font-size: 0.8em;
+    font-weight: lighter;
+}
+
+p {
+    margin-left: 7px;
+}
+
+.headerbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 110px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 110px;
+    background-color : rgb(21,156,234);
+    color: white;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    /*padding-top: 1px;*/
+    /*float: left;*/
+}
+
+.header2 {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /*text-align: right;*/
+}
+
+.right-side {
+    float: right;
+}
+
+#pro {
+    color : rgb(238,211,9);
+    font-size: 2em;
+    margin-left: 3vw;
+}
+
+#book {
+    font-size: 2em;
+    margin-right: auto;
+}
+
+#user {
+    margin-right: 1vw;
+    text-decoration: underline;
+}
+
+#logicon {
+    background-color: rgb(235,79,8);
+    background-size: cover;
+    float: right;
+    width: 7ch;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.logout {
+    height: 90px;
+    width: 90px;
+}
+
+.browse {
+    background-color: rgb(16,129,192);
+    border-right: 2px solid #ffffff;
+    float: left;
+    width: 33.7%;
+    height: 120px;
+    padding-top: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-size : 50px;
+    display: inline-block;
+    text-align: center;
+}
+
+.history {
+    background-color: rgb(235,79,8);
+    border-right: 2px solid #ffffff;
+    float: left;
+    width: 33%;
+    height: 120px;
+    padding-top: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-size : 50px;
+}
+
+.profile {
+    background-color: rgb(16,129,192);
+    float: right;
+    width: 33%;
+    height: 120px;
+    padding-top: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-size : 50px;
+}
+
+.main-section {
+    height: 100px;
+    width: 100%;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    display: inline-block;
+    padding-top: 100px;
+    /*align-items: horizontal;*/
+}
+
+.font2em {
+    font-size: 2em;
+    padding-bottom: 5px;
+}
+
+.main-page {
+    padding-top: 100px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 150px;
+}
+
+
+.history-unit {
+    margin-top: 50px;
+    display: flex;
+}
+
+.book-details {
+    margin-left: 20px;
+}
+
+.book-pic {
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    object-fit: contain;
+}
+
+.order-details {
+    margin-left: auto;
+    position: relative;
+}
+
+.review-book {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(21,156,234);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: normal;
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
+}
