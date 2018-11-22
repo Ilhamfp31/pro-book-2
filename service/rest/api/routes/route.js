@@ -1,9 +1,13 @@
 module.exports = function(app) {
-    var validasi = require('../controllers/validasi');
+    const validasi = require('../controllers/validasi');
+    const nasabah = require('../controllers/transfer');
 
     app.route('/')
         .get(validasi.index);
 
     app.route('/validasi')
         .post(validasi.validasi);
+
+    app.route('/transfer')
+    	.post(nasabah.transfer);
 };
