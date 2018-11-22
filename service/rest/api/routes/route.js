@@ -1,7 +1,9 @@
-const router = require('express').Router();
+module.exports = function(app) {
+    var validasi = require('../controllers/validasi');
 
-router.get('/', function(req, res) {
-    res.send('Halo');
-});
+    app.route('/')
+        .get(validasi.index);
 
-module.exports = router;
+    app.route('/validasi')
+        .post(validasi.validasi);
+};
