@@ -1,5 +1,6 @@
 const response = require('../controllers/res');
 const nasabah = require('../models/nasabah');
+const transaksi = require('../models/transaksi');
 
 exports.transfer = function(req, res) {
 	const pengirim = req.body.no_pengirim;
@@ -41,7 +42,16 @@ exports.transfer = function(req, res) {
 						            }); 
 								}
 								else {
-									//Bikin transaksi
+									transaksi.insertNewTransaction(penerima, pengirim, jumlah, function(error) {
+										if (error) {
+											return res.status(500).json({
+								                message : error
+								            }); 
+										}
+										else {
+											response.ok('Transfer berhasil', res);
+										}
+									})
 								}
 							});
 						}
