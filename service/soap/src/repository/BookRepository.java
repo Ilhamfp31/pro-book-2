@@ -1,5 +1,7 @@
 package repository;
 
+import model.DaftarHarga;
+import model.DaftarPenjualan;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -7,9 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 import org.json.JSONObject;
@@ -21,6 +21,7 @@ public class BookRepository {
   private static final String USERNAME = "root";
   private static final String PASSWORD = "wbd";
   private static final String MAX_POOL = "250";
+  private static final String STRING_UNDEFINED = "Tidak_Diketahui";
 
   // init connection object
   private Connection connection;
@@ -63,5 +64,97 @@ public class BookRepository {
     }
   }
 
+  public DaftarHarga getDaftarHarga(String id_buku) throws SQLException{
+    if (connection == null) {this.connect();}
+    Statement st = connection.createStatement();
 
+    DaftarHarga answer = new DaftarHarga(STRING_UNDEFINED, -1);
+
+    try
+    {
+      String query = "SELECT * FROM daftar_harga where id_buku = \"" + id_buku + "\";";
+      ResultSet rs = st.executeQuery(query);
+      while (rs.next())
+      {
+        answer.setId_buku(rs.getString("id_buku"));
+        answer.setHarga(rs.getInt("harga"));
+      }
+    }
+    catch (Exception e)
+    {
+      System.err.println("Got an exception! ");
+      System.err.println(e.getMessage());
+    } finally {
+      st.close();
+    }
+
+    return answer;
+  }
+
+  public void insertDaftarHarga(DaftarHarga input) throws SQLException{
+    if (connection == null) {this.connect();}
+    Statement st = connection.createStatement();
+    try {
+      DaftarHarga testExist = this.getDaftarHarga(input.getId_buku());
+      if (testExist.isValid()){
+        String query = String.format("UPDATE daftar_harga SET harga = %d WHERE id_buku = \"%s\";", input.getHarga(), input.getId_buku());
+        st.executeUpdate(query);
+      } else {
+        String query = String.format("INSERT INTO daftar_harga VALUES (\"%s\", %d);", input.getId_buku(), input.getHarga());
+        st.executeUpdate(query);
+      }
+    } catch (Exception e) {
+      System.err.println("Got an exception! ");
+      System.err.println(e.getMessage());
+    } finally {
+      st.close();
+    }
+  }
+
+  public DaftarPenjualan getDaftarPenjualan(String id_buku) throws SQLException{
+    if (connection == null) {this.connect();}
+    Statement st = connection.createStatement();
+    DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1);
+
+    try
+    {
+      String query = "SELECT * FROM daftar_penjualan where id_buku = \"" + id_buku + "\";";
+      ResultSet rs = st.executeQuery(query);
+      while (rs.next())
+      {
+        answer.setId_buku(rs.getString("id_buku"));
+        answer.setKategori(rs.getString("kategori"));
+        answer.setJumlah(rs.getInt("jumlah"));
+      }
+    }
+    catch (Exception e)
+    {
+      System.err.println("Got an exception! ");
+      System.err.println(e.getMessage());
+    } finally {
+      st.close();
+    }
+
+    return answer;
+  }
+
+  public void insertDaftarPenjualan(DaftarPenjualan input) throws SQLException{
+    if (connection == null) {this.connect();}
+    Statement st = connection.createStatement();
+    try {
+      DaftarPenjualan testExist = this.getDaftarPenjualan(input.getId_buku());
+      if (testExist.isValid()){
+        String query = String.format("UPDATE daftar_penjualan SET jumlah = %d WHERE id_buku = \"%s\";", input.getJumlah()+testExist.getJumlah(), input.getId_buku());
+        st.executeUpdate(query);
+      } else {
+        String query = String.format("INSERT INTO daftar_penjualan VALUES (\"%s\", \"%s\", %d);", input.getId_buku(), input.getKategori(), input.getJumlah());
+        st.executeUpdate(query);
+      }
+    } catch (Exception e) {
+      System.err.println("Got an exception! ");
+      System.err.println(e.getMessage());
+    } finally {
+      st.close();
+    }
+  }
 }
