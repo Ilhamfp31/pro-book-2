@@ -122,7 +122,7 @@ public class GoogleBooksApi {
             }
 
             System.out.println("Title: " + JudulBuku);
-            System.out.println("Author: " + KategoriBuku);
+            System.out.println("Author: " + AuthorBuku);
             System.out.println("Kategori: " + KategoriBuku);
             System.out.println("Deskripsi: " + DeskripsiBuku);
             System.out.println("Image: " + ImageBuku);
