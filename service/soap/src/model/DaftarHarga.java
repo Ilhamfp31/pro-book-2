@@ -24,4 +24,12 @@ public class DaftarHarga {
   public void setHarga(int harga) {
     this.harga = harga;
   }
+
+  public boolean isValid(){
+    if (this.harga == -1){
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

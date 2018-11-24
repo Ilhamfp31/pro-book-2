@@ -34,4 +34,12 @@ public class DaftarPenjualan {
   public void setJumlah(int jumlah) {
     this.jumlah = jumlah;
   }
+
+  public boolean isValid(){
+    if (this.jumlah == -1){
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
