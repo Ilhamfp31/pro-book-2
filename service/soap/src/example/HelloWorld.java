@@ -26,9 +26,21 @@ public class HelloWorld {
 
   public static void main(String[] argv) {
 
-      // Test getBookByTitle
+      // test getBookByTitle
     ArrayList<Map<String,String>> testGetBookByTitle = getBookByTitle("kue");
     System.out.println("\n\n Test balikan, Judul:" + testGetBookByTitle.get(0).get("title"));
+
+    // test BookRepository
+    BookRepository testBookRepository = new BookRepository();
+    try {
+      testBookRepository.connect();
+
+    } finally {
+      testBookRepository.disconnect();
+    }
+
+
+
 
 
     Object implementor = new HelloWorld ();
