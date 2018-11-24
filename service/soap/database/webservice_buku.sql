@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `webservice_buku`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `webservice_buku` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `webservice_buku`;
-
---
 -- Table structure for table `daftar_harga`
 --
 
@@ -43,6 +35,7 @@ CREATE TABLE `daftar_harga` (
 
 LOCK TABLES `daftar_harga` WRITE;
 /*!40000 ALTER TABLE `daftar_harga` DISABLE KEYS */;
+INSERT INTO `daftar_harga` VALUES ('Xl9nDwAAQBAJ',50000);
 /*!40000 ALTER TABLE `daftar_harga` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,6 +60,7 @@ CREATE TABLE `daftar_penjualan` (
 
 LOCK TABLES `daftar_penjualan` WRITE;
 /*!40000 ALTER TABLE `daftar_penjualan` DISABLE KEYS */;
+INSERT INTO `daftar_penjualan` VALUES ('Xl9nDwAAQBAJ','Cooking',2);
 /*!40000 ALTER TABLE `daftar_penjualan` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -79,4 +73,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-24  3:29:00
+-- Dump completed on 2018-11-25  0:29:39
