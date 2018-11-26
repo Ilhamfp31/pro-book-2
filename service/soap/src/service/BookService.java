@@ -17,4 +17,10 @@ public interface BookService {
 
     @WebMethod
     public Book getRecommendation(String category);
+
+    @WebMethod
+    public Boolean buyBook(String idBuku, Integer jumlah, String norek);
+
+    @WebMethod
+    public Book getBookDetail(String idBuku);
 }
