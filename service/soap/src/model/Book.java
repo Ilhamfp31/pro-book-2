@@ -12,6 +12,17 @@ public class Book implements Serializable {
     private String description;
     private String image;
     private String category;
+    private int price;
+
+    public Book(String id, String title, String author, String description, String image, String category) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.description = description;
+        this.image = image;
+        this.category = category;
+        this.price = -1;
+    }
 
     public Book(){
 
@@ -71,5 +82,13 @@ public class Book implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
