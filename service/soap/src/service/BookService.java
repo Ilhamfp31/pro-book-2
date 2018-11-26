@@ -13,7 +13,7 @@ import java.util.*;
 public interface BookService {
 
     @WebMethod
-    public ArrayList<Book> searchBookByTitle(String title);
+    public ArrayList<Book> getBookByTitle(String title);
 
     @WebMethod
     public Book getRecommendation(String category);
@@ -22,5 +22,5 @@ public interface BookService {
     public Boolean buyBook(String idBuku, Integer jumlah, String norek);
 
     @WebMethod
-    public Book getBookDetail(String idBuku);
+    public Book getBookDetailByID(String idBuku);
 }

@@ -1,4 +1,5 @@
 package example;
+import model.Book;
 import model.DaftarHarga;
 import model.DaftarPenjualan;
 import org.json.JSONArray;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import static service.GoogleBooksApi.getBookByTitle;
+import static service.GoogleBooksApi.getBookDetailByID;
 
 @WebService()
 public class HelloWorld {
@@ -28,9 +30,15 @@ public class HelloWorld {
 
   public static void main(String[] argv) {
 
-      // test getBookByTitle
-//    ArrayList<Map<String,String>> testGetBookByTitle = getBookByTitle("kue");
-//    System.out.println("\n\n Test balikan, Judul:" + testGetBookByTitle.get(0).get("title"));
+//       test getBookByTitle
+    ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
+    System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
+
+    //       test getBookDetailByID
+    Book testGetBookDetailByID = getBookDetailByID("Xl9nDwAAQBAJ");
+    System.out.println("\n\n Test balikan2, Judul:" + testGetBookDetailByID.getTitle());
+
+
 
     // test BookRepository
     DaftarHarga dummyDaftarHarga1 = new DaftarHarga("napeDwAAQBAJ", 130000);
@@ -58,8 +66,6 @@ public class HelloWorld {
     }finally {
       testBookRepository.disconnect();
     }
-
-
 
 
 
