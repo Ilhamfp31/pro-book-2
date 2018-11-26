@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23242dfd-883e-46c4-88ca-eda26dbe19cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../app/core/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../app/core/Model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-web-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/book-web-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/book-web-service/example/HelloWorld.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/book-web-service/example/HelloWorld.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/book-web-service/model/book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/book-web-service/repository/bookRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/book-web-service/repository/bookRepository.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -117,8 +112,8 @@
       <file leaf-file-name="HelloWorld.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/example/HelloWorld.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="50" column="62" lean-forward="true" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
+            <state relative-caret-position="374">
+              <caret line="52" column="67" selection-start-line="52" selection-start-column="67" selection-end-line="52" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -216,8 +211,8 @@
         <option value="$PROJECT_DIR$/src/service/GoogleBooksApi.java" />
         <option value="$PROJECT_DIR$/src/model/DaftarHarga.java" />
         <option value="$PROJECT_DIR$/src/model/DaftarPenjualan.java" />
-        <option value="$PROJECT_DIR$/src/example/HelloWorld.java" />
         <option value="$PROJECT_DIR$/src/repository/BookRepository.java" />
+        <option value="$PROJECT_DIR$/src/example/HelloWorld.java" />
       </list>
     </option>
   </component>
@@ -230,7 +225,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1386" />
     <option name="height" value="788" />
@@ -368,15 +363,15 @@
       <workItem from="1542791097897" duration="1268000" />
       <workItem from="1542794361268" duration="512000" />
       <workItem from="1542984878205" duration="6417000" />
-      <workItem from="1543050473624" duration="13529000" />
+      <workItem from="1543050473624" duration="16608000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21754000" />
+    <option name="totallyTimeSpent" value="24833000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -583,8 +578,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/example/HelloWorld.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="50" column="62" lean-forward="true" selection-start-line="50" selection-start-column="62" selection-end-line="50" selection-end-column="62" />
+        <state relative-caret-position="374">
+          <caret line="52" column="67" selection-start-line="52" selection-start-column="67" selection-end-line="52" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
