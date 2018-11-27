@@ -40,6 +40,11 @@
 					<div class ="profile-label">Phone number</div>
 					<div class ="profile-value"><?php echo $data['phone']?></div>
 				</div>
+				<div class ="profile-row">
+					<div class ="profile-icon"><img src="../../public/images/bank.png"></div>
+					<div class ="profile-label">Bank account</div>
+					<div class ="profile-value"><?php echo $data['no_kartu']?></div>
+				</div>
 			</div>
 		</div>
 </body>

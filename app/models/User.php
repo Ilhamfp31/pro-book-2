@@ -32,16 +32,16 @@ class User extends Model
 
     function createUser($user)
     {
-        $sql = "INSERT INTO user(name, username, address, password, email, phone) VALUE(" .
+        $sql = "INSERT INTO user(name, username, address, password, email, phone, no_kartu) VALUE(" .
            "'" . $user["name"] . "', '" . $user["username"] . "', '" . $user["address"] . 
-           "', '" . $user["password"] . "', '" . $user["email"] . "', '" . $user["phone"] . "')";     
+           "', '" . $user["password"] . "', '" . $user["email"] . "', '" . $user["phone"] . "', '" . $user["no_kartu"] . "')";     
         
         return $this->conn->query($sql);      
     }
 
     function updateUserById($user){
         $sql = "UPDATE user 
-                SET name = '" . $user['name'] . "', address = '" . $user['address'] . "', phone = '" . $user['phone'] . "', userPicture = '" . $user['userPicture'] . "' WHERE userID = " . $user['id'];
+                SET name = '" . $user['name'] . "', address = '" . $user['address'] . "', phone = '" . $user['phone'] . "', userPicture = '" . $user['userPicture']  . "', no_kartu = '" . $user['no_kartu'] . "' WHERE userID = " . $user['id'];
 
         return $this->conn->query($sql);
     }

@@ -51,6 +51,12 @@
                             <img class="check-valid" src="/public/images/orange-check.png">
                             <img class="check-invalid" src="/public/images/orange-x.png">
                         </div>
+                        <div id="bank-account">
+                            <label for="bank-account">Bank Account</label>
+                            <input type="text" name="bank-account">
+                            <img class="check-valid" src="/public/images/orange-check.png">
+                            <img class="check-invalid" src="/public/images/orange-x.png">
+                        </div>
                         <a href="/login">Already have an account?</a>
                         <button id="submit-btn" class="disabled-btn" type="submit" disabled>REGISTER</button>
                     </form>

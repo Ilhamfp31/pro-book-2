@@ -20,6 +20,7 @@
 							<div id="image-input">
 								<div id="filebox"></div>
 								<input type="button" id="browse-button" onclick="document.getElementById('ava').click()" value="Browse ..." />
+								<input id = "avaHidden" class ="edit-profile-input" type="text" name="avaHidden" value="<?php if(is_null($data['userPicture'])) { echo '../../public/images/profile/default.jpg'; } else { echo $data['userPicture']; }?>" hidden>
 								<input type="file" id="ava" name="avatar" onchange="FileSelected()" accept="image/*">
 							</div>
 						</div>
@@ -36,11 +37,15 @@
 						<label class = "edit-profile-label" for="phone"> Phone Number </label>
 						<input id = "phoneinput" class ="edit-profile-input" type="text" name="phone" value="<?php echo $data['phone']?>" >
 					</div>
+					<div class ="edit-profile-row">
+						<label class = "edit-profile-label" for="bank-account"> Bank Account </label>
+						<input id = "bankinput" class ="edit-profile-input" type="text" name="bank-account" value="<?php echo $data['no_kartu']?>" >
+					</div>
 					<div class ="edit-profile-row" id = "edit-profile-button-row">
 						<!-- <button onclick="location.href='/Profile'" id="cancel-button" type="button">Back</button> -->
 						<a href="/Profile" id = "cancel-button">Back</a>
 						<!-- <button id="save-button" type="button">Save</button> -->
-						<input type="submit" value="Save" id="save-button" class="disabled-save-button" disabled>
+						<input type="submit" value="Save" id="save-button" class="save-button">
 					</div>
 				</form>
 			</div>

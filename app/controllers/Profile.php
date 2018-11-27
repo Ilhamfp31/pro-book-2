@@ -60,6 +60,7 @@ class Profile extends Controller
 	        $user['name'] = $_POST['name'];
 	        $user['address'] = $_POST['address'];
 	        $user['phone'] = $_POST['phone'];
+            $user['no_kartu'] = $_POST['bank-account'];
 			$name = $_FILES["avatar"]["name"];
 			$tmp_name = $_FILES["avatar"]["tmp_name"];
 			$dest = 'public/images/profile/';
@@ -67,7 +68,7 @@ class Profile extends Controller
 			if(move_uploaded_file($_FILES["avatar"]["tmp_name"],$dest.$user['id'])){
 				$user['userPicture'] = '../../'.$dest.$user['id'];
 			} else {
-				$user['userPicture'] = NULL;
+                $user['userPicture'] = $_POST['avaHidden'];
 			}
 
 	        $model = $this->model('User');
