@@ -4,6 +4,7 @@ var con = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
   user: "root",
+  password: "wbd",
   database: "webservice_bank"
 });
 
