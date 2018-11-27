@@ -116,6 +116,54 @@ public class GoogleBooksApi {
         }
     }
 
+    public static Book getRandomBookByCategory(String category) {
+        String apiUrlString = "https://www.googleapis.com/books/v1/volumes?q=subject:" + category;
+        try {
+            HttpURLConnection connection = null;
+            // Build Connection.
+            connection = getHttpURLConnection(apiUrlString, connection);
+            int responseCode = connection.getResponseCode();
+            if (responseCode != 200) {
+                connection.disconnect();
+                return null;
+            }
+
+            // Read data from response.
+            StringBuilder builder = new StringBuilder();
+            BufferedReader responseReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line = responseReader.readLine();
+            while (line != null) {
+                builder.append(line);
+                line = responseReader.readLine();
+            }
+            String responseString = builder.toString();
+            System.out.println("Response String: " + responseString);
+            JSONObject responseJson = new JSONObject(responseString);
+            // Close connection and return response code.
+            connection.disconnect();
+
+            if (responseJson.has("items")) {
+                JSONArray arrayOfBooks = responseJson.getJSONArray("items");
+                Random rand = new Random();
+                JSONObject jsonBook = arrayOfBooks.getJSONObject(rand.nextInt(arrayOfBooks.length()));
+                return getBook(jsonBook);
+            } else {
+                System.out.println("Hasil kosong");
+            }
+
+            return null;
+        } catch (SocketTimeoutException e) {
+            System.out.println("Connection timed out. Returning null");
+            return null;
+        } catch (IOException e) {
+            System.out.println("IOException when connecting to Google Books API.");
+            return null;
+        } catch (JSONException e) {
+            System.out.println("JSONException when connecting to Google Books API.");
+            return null;
+        }
+    }
+
     private static HttpURLConnection getHttpURLConnection(String apiUrlString, HttpURLConnection connection) throws IOException {
         try {
             URL url = new URL(apiUrlString);

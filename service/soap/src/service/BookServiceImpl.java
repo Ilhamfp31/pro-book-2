@@ -17,12 +17,51 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public ArrayList<Book> getBookByTitle(String title) {
-        return null;
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.connect();
+        ArrayList<Book> bookList = GoogleBooksApi.getBookByTitle(title);
+        for (Book book : bookList) {
+            DaftarHarga daftarHarga = null;
+            try {
+                daftarHarga = bookRepository.getDaftarHarga(book.getId());
+                if (daftarHarga.getHarga() != -1) {
+                    book.setPrice(daftarHarga.getHarga());
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        bookRepository.disconnect();
+        return bookList;
     }
 
     @Override
-    public Book getRecommendation(String category) {
-        return null;
+    public Book getRecommendation(String... categories) {
+        Book book;
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.connect();
+        DaftarPenjualan daftarPenjualan = new DaftarPenjualan("undefined", "undefined", -1);
+        for (String category : categories) {
+            try {
+                DaftarPenjualan largest_penjualan = bookRepository.getLargestByCategory(category);
+                if (largest_penjualan.getJumlah() > daftarPenjualan.getJumlah()) {
+                    daftarPenjualan.setId_buku(largest_penjualan.getId_buku());
+                    daftarPenjualan.setKategori(largest_penjualan.getKategori());
+                    daftarPenjualan.setJumlah(largest_penjualan.getJumlah());
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (daftarPenjualan.getJumlah() == -1) {
+            Random rand = new Random();
+            book = GoogleBooksApi.getRandomBookByCategory(categories[rand.nextInt(categories.length)]);
+        }
+        else {
+            book = GoogleBooksApi.getBookDetailByID(daftarPenjualan.getId_buku());
+        }
+        bookRepository.disconnect();
+        return book;
     }
 
     @Override

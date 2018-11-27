@@ -17,7 +17,7 @@ public interface BookService {
     ArrayList<Book> getBookByTitle(String title);
 
     @WebMethod
-    Book getRecommendation(String category);
+    Book getRecommendation(String... categories);
 
     @WebMethod
     Boolean buyBook(String idBuku, Integer jumlah, String norek);
