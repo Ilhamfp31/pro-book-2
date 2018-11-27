@@ -158,4 +158,29 @@ public class BookRepository {
             st.close();
         }
     }
+
+    public DaftarPenjualan getLargestByCategory(String category) throws SQLException {
+        if (connection == null) {
+            this.connect();
+        }
+        Statement st = connection.createStatement();
+        DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1);
+
+        try {
+            String query = "SELECT * FROM daftar_penjualan WHERE category = \"" + category + "\" ORDER BY jumlah DESC LIMIT 1;";
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                answer.setId_buku(rs.getString("id_buku"));
+                answer.setKategori(rs.getString("kategori"));
+                answer.setJumlah(rs.getInt("jumlah"));
+            }
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        } finally {
+            st.close();
+        }
+
+        return answer;
+    }
 }
