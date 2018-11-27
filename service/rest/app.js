@@ -4,6 +4,7 @@ var express = require('express'),
 app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(require('morgan')('dev'));
 
 var routes = require('./api/routes/route');
 routes(app);
@@ -12,4 +13,3 @@ routes(app);
 app.listen(3000, function () {
   console.log('Express app listening on port 3000');
 });
-

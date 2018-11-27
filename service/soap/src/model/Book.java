@@ -14,7 +14,7 @@ public class Book implements Serializable {
     private String category;
     private int price;
 
-    public Book(){
+    public Book() {
 
     }
 

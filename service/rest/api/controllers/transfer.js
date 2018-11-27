@@ -9,9 +9,10 @@ exports.transfer = function(req, res) {
 
 	nasabah.getNasabahByCard(pengirim, function(error, rows) {
 		if (error) {
+			console.log(error);
 			return res.status(500).json({
                 message : 'Internal server error'
-            }); 
+            });
 		}
 		else {
 			if (rows.length == 0) {
@@ -24,9 +25,10 @@ exports.transfer = function(req, res) {
 				let saldo_pengirim = Number(rows[0].saldo);
 				nasabah.getNasabahByCard(penerima, function(error, rows) {
 					if (error) {
+						console.log(error);
 						return res.status(500).json({
 					        message : 'Internal server error'
-					    }); 
+					    });
 					}
 					else {
 						if (rows.length == 0) {
@@ -37,16 +39,18 @@ exports.transfer = function(req, res) {
 							console.log(saldo_penerima + jumlah);
 							nasabah.updateBalanceByCard(penerima, pengirim, (saldo_penerima + jumlah), (saldo_pengirim - jumlah), function(error) {
 								if (error) {
-									 return res.status(500).json({
+									console.log(error);
+									return res.status(500).json({
 						                message : 'Internal server error'
-						            }); 
+						            });
 								}
 								else {
 									transaksi.insertNewTransaction(penerima, pengirim, jumlah, function(error) {
 										if (error) {
+											console.log(error);
 											return res.status(500).json({
 								                message : error
-								            }); 
+								            });
 										}
 										else {
 											response.ok('Transfer berhasil', res);

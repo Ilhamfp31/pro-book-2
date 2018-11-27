@@ -6,6 +6,7 @@ import javax.jws.soap.SOAPBinding;
 
 import model.Book;
 
+import java.sql.SQLException;
 import java.util.*;
 
 @WebService
@@ -13,14 +14,14 @@ import java.util.*;
 public interface BookService {
 
     @WebMethod
-    public ArrayList<Book> getBookByTitle(String title);
+    ArrayList<Book> getBookByTitle(String title);
 
     @WebMethod
-    public Book getRecommendation(String category);
+    Book getRecommendation(String category);
 
     @WebMethod
-    public Boolean buyBook(String idBuku, Integer jumlah, String norek);
+    Boolean buyBook(String idBuku, Integer jumlah, String norek);
 
     @WebMethod
-    public Book getBookDetailByID(String idBuku);
+    Book getBookDetailByID(String idBuku) throws SQLException;
 }
