@@ -29,6 +29,7 @@ class Register extends Controller
         $user['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $user['address'] = $_POST['address'];
         $user['phone'] = $_POST['phone'];
+        $user['no_kartu'] = $_POST['bank-account'];
 
 
         $model = $this->model('User');

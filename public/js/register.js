@@ -8,10 +8,11 @@ var phone_valid = false;
 var pass_valid = false;
 var confirm_pass_valid = false;
 var address_valid = false;
+var bank_account_valid = false;
 
 toggle_btn = function() {
     var btn = document.getElementById("submit-btn")
-    if (name_valid && username_valid && email_valid && phone_valid && pass_valid && confirm_pass_valid && address_valid) {
+    if (name_valid && username_valid && email_valid && phone_valid && pass_valid && confirm_pass_valid && address_valid && bank_account_valid) {
         btn.disabled = false;
         btn.classList.remove("disabled-btn");
         btn.classList.add("register-btn");
@@ -139,6 +140,7 @@ document.querySelector("#address textarea").addEventListener("input", function()
     }
     toggle_btn();
 })
+
 document.querySelector("#phone input").addEventListener("input", function() {
     if (this.value.length == 0) {
         valid_check[4].setAttribute("style", "display : none");
@@ -157,3 +159,33 @@ document.querySelector("#phone input").addEventListener("input", function() {
     }
     toggle_btn();
 })
+
+var bank_account_field = document.querySelector("#bank-account input");
+bank_account_field.addEventListener("input", function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            if (bank_account_field.value.length == 0) {
+                valid_check[5].setAttribute("style", "display : none");
+                invalid_check[5].setAttribute("style", "display: none");
+                bank_account_valid = false;
+            }
+            else if ((/^[0-9]+$/).test(bank_account_field.value) && bank_account_field.value.length == 16 && response.values == 1) {
+                valid_check[5].setAttribute("style", "display : inline-block");
+                invalid_check[5].setAttribute("style", "display: none");
+                bank_account_valid = true;
+            } 
+            else {
+                valid_check[5].setAttribute("style", "display : none");
+                invalid_check[5].setAttribute("style", "display: inline-block");
+                bank_account_valid = false;
+            }
+            toggle_btn();
+        }
+    }
+    xhttp.open("POST", "http://localhost:3000/validasi", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify({ "no_kartu": this.value }));
+})
+
