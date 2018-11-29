@@ -10,7 +10,7 @@ class SoapHelper {
         try {
             $this->conn = new SoapClient(SOAPADRESS, OPTIONS);
         } catch (Exception $e) {
-            die('SOAP connection failed: '$e->getMessage());
+            die('SOAP connection failed: ' . $e->getMessage());
         }
     }
 
@@ -23,7 +23,14 @@ class SoapHelper {
     public function getBookByID($id) {
         $data = $this->conn->getBookDetailByID($id);
         $array = json_decode(json_encode($data), True);
-        return $array;
+        $output["bookID"] = $array["id"];
+        $output["title"] = $array["title"];
+        $output["author"] = $array["author"];
+        $output["bookPicture"] = $array["image"];
+        $output["synopsis"] = $array["description"];
+        $output["price"] = $array["price"];
+        $output["category"] = $array["category"];
+        return $output;
     }
 
     public function getRecommendation($categories) {
