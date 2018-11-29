@@ -584,6 +584,7 @@ body {
     color: white;
     padding: 5px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #order>button:disabled {
