@@ -35,7 +35,7 @@ CREATE TABLE `daftar_harga` (
 
 LOCK TABLES `daftar_harga` WRITE;
 /*!40000 ALTER TABLE `daftar_harga` DISABLE KEYS */;
-INSERT INTO `daftar_harga` VALUES ('Xl9nDwAAQBAJ',50000);
+INSERT INTO `daftar_harga` VALUES ('napeDwAAQBAJ',130000),('Xl9nDwAAQBAJ',50000);
 /*!40000 ALTER TABLE `daftar_harga` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,11 +47,13 @@ DROP TABLE IF EXISTS `daftar_penjualan`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `daftar_penjualan` (
-  `id_buku` varchar(255) NOT NULL,
+  `id_daftar_penjualan` int(11) NOT NULL AUTO_INCREMENT,
+  `id_buku` varchar(255) DEFAULT NULL,
   `kategori` varchar(255) DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_buku`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `timestamp` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id_daftar_penjualan`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +62,7 @@ CREATE TABLE `daftar_penjualan` (
 
 LOCK TABLES `daftar_penjualan` WRITE;
 /*!40000 ALTER TABLE `daftar_penjualan` DISABLE KEYS */;
-INSERT INTO `daftar_penjualan` VALUES ('Xl9nDwAAQBAJ','Cooking',2);
+INSERT INTO `daftar_penjualan` VALUES (3,'napeDwAAQBAJ','Cooking',3,1543466931493),(4,'Xl9nDwAAQBAJ','Cooking',1,1543466931569),(5,'napeDwAAQBAJ','Cooking',3,1543466950202),(6,'Xl9nDwAAQBAJ','Cooking',1,1543466950268);
 /*!40000 ALTER TABLE `daftar_penjualan` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -73,4 +75,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-25  0:29:39
+-- Dump completed on 2018-11-29 12:53:43
