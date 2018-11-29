@@ -9,7 +9,11 @@ class Profile extends Controller
 		}
 		
     	if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -18,10 +22,9 @@ class Profile extends Controller
             header('Location: /login');
         }
         else {
-        	$_SESSION['expire_token'] = time() + 1200;
             $data = $this->model("User")->readUserById($_COOKIE['id']);
             $data["navigation"] = "Profile";
-        	$this->view(profile,$data);
+        	$this->view("profile",$data);
         }
     }
 
@@ -30,7 +33,11 @@ class Profile extends Controller
 		session_start();
 
 		if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -39,7 +46,6 @@ class Profile extends Controller
             header('Location: /login');
             exit();
         } else {
-        	$_SESSION['expire_token'] = time() + 1200;
 	        $data = $this->model("User")->readUserById($_COOKIE['id']);
 	        $data["navigation"] = "Profile";
 	        $this->view("editprofile", $data);
@@ -50,14 +56,17 @@ class Profile extends Controller
     {
     	session_start();
 
-    	if (isset($_COOKIE['access_token'])) {
-          $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
-      } else {
-          $access_valid = false;
-      }
+        if (isset($_COOKIE['access_token'])) {
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
+        } else {
+            $access_valid = false;
+        }
 
       	if ($access_valid){
-	    	$_SESSION['expire_token'] = time() + 1200;
 	    	$user['id'] = $_COOKIE['id'];
 	        $user['name'] = $_POST['name'];
 	        $user['address'] = $_POST['address'];

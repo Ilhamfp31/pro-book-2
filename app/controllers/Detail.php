@@ -8,7 +8,11 @@ class Detail extends Controller
         }
 
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -18,8 +22,6 @@ class Detail extends Controller
             exit();
         }
         else {
-            $_SESSION['expire_token'] = time() + 1200;
-
             setcookie("bookid", $bookid, time() + 3600,'/');
             $soap = $this->model('SoapHelper');
             $data['book'] = $soap->getBookByID($bookid);
@@ -34,8 +36,6 @@ class Detail extends Controller
         if (!isset($_SESSION)) {
             session_start();
         }
-        
-        $_SESSION['expire_token'] = time()+1200;
         $model = $this->model('Order');
         $entityBody = json_decode(file_get_contents('php://input'), true);
         $orderid = $model->createOrder($_COOKIE['bookid'], $entityBody['total'], $_COOKIE['id']);

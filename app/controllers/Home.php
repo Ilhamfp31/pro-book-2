@@ -9,7 +9,11 @@ class Home extends Controller
         }
         
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -19,8 +23,6 @@ class Home extends Controller
             exit();
         }
         else {
-            $_SESSION['expire_token'] = time() + 1200;
-
             $data = $this->model("User")->readUserById($_COOKIE['id']);
             $data["navigation"] = "Browse";
             $this->view('home' ,$data);
@@ -34,7 +36,11 @@ class Home extends Controller
         }
 
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -44,7 +50,6 @@ class Home extends Controller
             exit();
         }
         else {
-            $_SESSION['expire_token'] = time() + 1200;
             $data["navigation"] = "Browse";
             $this->view("result", $data);
         }

@@ -8,7 +8,11 @@ class History extends Controller
         }
         
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -18,8 +22,6 @@ class History extends Controller
             exit();
         }
         else {
-        	$_SESSION['expire_token'] = time() + 1200;
-
             $data['data'] = $this->model("Order")->readHistoryByUserId($_COOKIE['id']);
             if (count($data) > 0){
             	$data["navigation"] = "History";

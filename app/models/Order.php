@@ -10,6 +10,7 @@ class Order extends Model
                 LEFT JOIN review ON review.orderID=orders.orderID
                 WHERE userid = '". $id ."') AS temp ORDER BY date DESC";
         $result = $this->conn->query($sql);
+        $results = [];
         while ($row = $result->fetch_assoc()) {
             $results[] = $row;
         }

@@ -8,13 +8,16 @@ class Login extends Controller
         }
         
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
 
         if ($access_valid) {
-            $_SESSION['expire_token'] = time() + 1200;
             header('Location: /home');
             exit();
         }
@@ -39,16 +42,13 @@ class Login extends Controller
                 $token = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
 
                 setcookie('access_token', $token , time() + 1800, '/');
-                $_SESSION['access_token'] = $token;
-                $_SESSION['expire_token'] = time() + 1200;
-
-
-                // Insert token to db
-                $browser = get_browser(null, true)['browser'];
-                $model_token = $this->model('Token');
-                $temp_token = $model_token->insertToken($id, $token, $browser, 'test');
-
                 $_SESSION['username'] = $temp['username'];
+                
+                // Insert token to db
+                $model_token = $this->model('Token');
+                $temp_token = $model_token->insertToken($id, $token);
+
+                
                 header('Location: /home');
                 exit();
             }else{

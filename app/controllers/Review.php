@@ -8,7 +8,11 @@ class Review extends Controller
         }
         
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
@@ -18,8 +22,6 @@ class Review extends Controller
             exit();
         }
         else {
-            $_SESSION['expire_token'] = time() + 1200;
-
             setcookie("orderid", $orderid, time() + 3600, '/');
             $order = $this->model('Order');
             $data = $order->readReviewByOrderID($orderid);
@@ -36,7 +38,11 @@ class Review extends Controller
         }
 
         if (isset($_COOKIE['access_token'])) {
-            $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
+            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+                $access_valid = true;
+            } else {
+                $access_valid = false;
+            }
         } else {
             $access_valid = false;
         }
