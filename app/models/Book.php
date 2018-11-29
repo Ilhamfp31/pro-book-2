@@ -35,14 +35,20 @@ class Book extends Model
         return $result["avg_rating"] ? $result : array("avg_rating" => 0, "votes" => 0);
     }
 
-    function getBookByKeyword($keyword) 
+    function readBooksByKeyword($keyword) 
     {
         require_once "app/models/SoapHelper.php";
         $soap = new SoapHelper();
         $data = $soap->getBooksByTitle($keyword);
-        foreach ($data->books as $key => $value) {
-            $data["books"][$key]["avg_rating"] = ($this->readRatingByBookId($value["id"]))["avg_rating"];
-            $data["books"][$key]["votes"] = ($this->readRatingByBookId($value["id"]))["votes"];
+        if ($data[0]) {
+            foreach ($data as $key => $value) {
+                $data[$key]["avg_rating"] = ($this->readRatingByBookId($value["id"]))["avg_rating"];
+                $data[$key]["votes"] = ($this->readRatingByBookId($value["id"]))["votes"];
+            }
+        }
+        else {
+            $data["avg_rating"] = ($this->readRatingByBookId($data["id"]))["avg_rating"];
+            $data["votes"] = ($this->readRatingByBookId($data["id"]))["votes"];
         }
         return $data;
     }

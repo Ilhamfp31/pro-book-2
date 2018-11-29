@@ -6,7 +6,7 @@
     </div>
     <div id="nav-header-end">
         <div id="hiname">
-        Hi, <?php session_start(); echo $_SESSION['username'];?>!
+        Hi, <?php if(!isset($_SESSION)) {session_start();} echo $_SESSION['username'];?>!
         </div>
 
         <div id="logout-button">

@@ -35,7 +35,7 @@ public class HelloWorld {
 
 //       //         test getBookByTitle
         ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
-        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
+//        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
 //
 //        //       test getBookDetailByID
 //        Book testGetBookDetailByID = getBookDetailByID("Xl9nDwAAQBAJ");

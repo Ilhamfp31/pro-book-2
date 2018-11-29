@@ -3,7 +3,9 @@ class Detail extends Controller
 {
     public function index($bookid)
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();            
+        }
 
         if (isset($_COOKIE['access_token'])) {
             $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
@@ -29,7 +31,10 @@ class Detail extends Controller
     }
 
     public function order() {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        
         $_SESSION['expire_token'] = time()+1200;
         $model = $this->model('Order');
         $entityBody = json_decode(file_get_contents('php://input'), true);
