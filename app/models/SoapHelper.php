@@ -10,7 +10,7 @@ class SoapHelper {
         try {
             $this->conn = new SoapClient(SOAPADRESS, OPTIONS);
         } catch (Exception $e) {
-            die('SOAP connection failed: '$e->getMessage());
+            die('SOAP connection failed: ' . $e->getMessage());
         }
     }
 

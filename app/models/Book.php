@@ -37,11 +37,12 @@ class Book extends Model
 
     function getBookByKeyword($keyword) 
     {
-        $soap = new SoapClient("http://localhost:9000/BookService?wsdl", array("cache_wsdl" => WSDL_CACHE_NONE));
-        $data = $soap->getBookByTitle($keyword);
+        require_once "app/models/SoapHelper.php";
+        $soap = new SoapHelper();
+        $data = $soap->getBooksByTitle($keyword);
         foreach ($data->books as $key => $value) {
-            $data->books[$key]->avg_rating = ($this->readRatingByBookId($value->id))["avg_rating"];
-            $data->books[$key]->votes = ($this->readRatingByBookId($value->id))["votes"];
+            $data["books"][$key]["avg_rating"] = ($this->readRatingByBookId($value["id"]))["avg_rating"];
+            $data["books"][$key]["votes"] = ($this->readRatingByBookId($value["id"]))["votes"];
         }
         return $data;
     }
