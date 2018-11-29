@@ -585,6 +585,10 @@ body {
     border-radius: 5px;
 }
 
+#order > button:disabled {
+    background-color: grey;
+}
+
 .detail-sub-header {
     font-size: 40px;
     margin: 0 0 10px 0;
