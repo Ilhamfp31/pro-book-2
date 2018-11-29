@@ -137,7 +137,7 @@ public class BookRepository {
         return answer;
     }
 
-    public void insertDaftarPenjualan( DaftarPenjualan input) throws SQLException {
+    public long insertDaftarPenjualan( DaftarPenjualan input) throws SQLException {
         if (connection == null) {
             this.connect();
         }
@@ -145,13 +145,19 @@ public class BookRepository {
         try {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             String query = String.format("INSERT INTO daftar_penjualan(id_buku, kategori, jumlah, timestamp) VALUES (\"%s\", \"%s\", %d, %d);", input.getId_buku(), input.getKategori(), input.getJumlah(), timestamp.getTime());
-            st.executeUpdate(query);
+            st.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+            ResultSet generatedKeys = st.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                return generatedKeys.getLong(1);
+            }
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         } finally {
             st.close();
         }
+        return -1;
     }
 
     public DaftarPenjualan getLargestByCategory(String category) throws SQLException {
