@@ -333,7 +333,9 @@ body {
 }
 
 .result-element {
-    margin-bottom: 20px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid grey;
 }
 
 
