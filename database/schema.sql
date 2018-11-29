@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `bookID` varchar(20) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
   `orderID` int(11) DEFAULT NULL,
