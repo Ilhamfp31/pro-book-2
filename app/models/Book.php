@@ -40,9 +40,15 @@ class Book extends Model
         require_once "app/models/SoapHelper.php";
         $soap = new SoapHelper();
         $data = $soap->getBooksByTitle($keyword);
-        foreach ($data as $key => $value) {
-            $data[$key]["avg_rating"] = ($this->readRatingByBookId($value["id"]))["avg_rating"];
-            $data[$key]["votes"] = ($this->readRatingByBookId($value["id"]))["votes"];
+        if ($data[0]) {
+            foreach ($data as $key => $value) {
+                $data[$key]["avg_rating"] = ($this->readRatingByBookId($value["id"]))["avg_rating"];
+                $data[$key]["votes"] = ($this->readRatingByBookId($value["id"]))["votes"];
+            }
+        }
+        else {
+            $data["avg_rating"] = ($this->readRatingByBookId($data["id"]))["avg_rating"];
+            $data["votes"] = ($this->readRatingByBookId($data["id"]))["votes"];
         }
         return $data;
     }

@@ -247,6 +247,13 @@ body {
 #form-search-box {
     display: flex;
     flex-flow: column;
+    margin-bottom: 2rem;
+}
+
+#not-found {
+    display: none;
+    font-size: 3rem;
+    text-align: center;
 }
 
 #search-box {
@@ -894,6 +901,10 @@ body {
     100% {
         opacity: 0;
     }
+}
+
+#loading-spinner {
+    display: none;
 }
 
 .lds-spinner {

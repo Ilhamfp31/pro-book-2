@@ -18,6 +18,8 @@
 			<input ng-click="submitSearch()" type="submit" value="Search" id="submit-search">
 		</form>
 
+        <p id="not-found">Not Found</[]>
+
         <div class="lds-css ng-scope" id="loading-spinner">
             <div class="lds-spinner" style="100%;height:100%">
                 <div></div>
