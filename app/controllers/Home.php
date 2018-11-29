@@ -41,7 +41,6 @@ class Home extends Controller
         }
         else {
             $_SESSION['expire_token'] = time() + 1200;
-            $data['data'] = $this->model("Book")->readBooksAndRatingByTitle($_POST['keyword']);
             $data["navigation"] = "Browse";
             $this->view("result", $data);
         }
@@ -56,5 +55,12 @@ class Home extends Controller
         setcookie("access_token","",time()-3600,'/');
         header("location: /login");
         exit();
+    }
+
+    public function searchbook($keyword)
+    {
+        $data = $this->model("Book")->getBookByKeyword($keyword);
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 }

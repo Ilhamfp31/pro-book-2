@@ -39,5 +39,4 @@ class App
         unset($parsed[0]);
         return array_values($parsed);
     }
-
 }

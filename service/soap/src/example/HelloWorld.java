@@ -79,8 +79,6 @@ public class HelloWorld {
         Object implementor2 = new BookServiceImpl();
         String address2 = "http://localhost:9000/BookService";
         Endpoint.publish(address2, implementor2);
-
-        System.out.println(((BookServiceImpl) implementor2).buyBook("Xl9nDwAAQBAJ", 100000, "5286723727626013"));
     }
 
 }

@@ -14,6 +14,19 @@ public class Book implements Serializable {
     private String category;
     private int price;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
     public Book(String id, String title, String author, String description, String image, String category) {
         this.id = id;
         this.title = title;
