@@ -74,6 +74,25 @@
 
             <?php } ?>
         </section>
+        <section id="recommendations">
+            <p class="detail-sub-header">Recommendations</p>
+            <?php if (is_array($data['recommendation']) || is_object($data['recommendation'])){
+                foreach ($data['recommendation'] as $element) { ?>
+            <div class="result-element">
+                <div class="result-wrapper">
+                    <img src="<?php echo $element['bookPicture']?>" class="thumbnail">
+                    <div class="result-description">
+                        <p class="result-title"><?php echo $element['title']?></p>
+                        <?php if(isset($element['author'])) { ?>
+                            <p class="result-info"><?php echo $element['author']?></p>
+                        <?php } ?>
+                        <p class="result-desc"><?php echo $element['synopsis']?></p>
+                        <a href="/detail/index/<?php echo $element['bookID']?>" class="detail-button">Detail</a>
+                    </div>
+                </div>
+            </div>
+            <?php } } ?>
+        </section>
     </div>
     <div id="notif">
         <div id="dialog-msg">
