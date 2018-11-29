@@ -35,7 +35,7 @@ class Book extends Model
         return $result["avg_rating"] ? $result : array("avg_rating" => 0, "votes" => 0);
     }
 
-    function getBookByKeyword($keyword) 
+    function readBooksByKeyword($keyword) 
     {
         require_once "app/models/SoapHelper.php";
         $soap = new SoapHelper();

@@ -65,7 +65,7 @@ class Home extends Controller
 
     public function searchbook($keyword)
     {
-        $data = $this->model("Book")->getBookByKeyword($keyword);
+        $data = $this->model("Book")->readBooksByKeyword($keyword);
         header('Content-Type: application/json');
         echo json_encode($data);
     }
