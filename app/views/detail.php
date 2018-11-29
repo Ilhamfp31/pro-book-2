@@ -32,6 +32,14 @@
                         <?php } ?>
                 </div>
                 <p><?php echo sprintf('%0.1f', $data['book']['avg_rating'])?>/5.0</p>
+                <p><?php 
+                    if ($data['book']['price'] != -1) {
+                        echo "Rp. " . sprintf('%0.2f', $data['book']['price']);
+                    }
+                    else {
+                        echo "Not available";
+                    }
+                ?></p>
             </div>
         </section>
         <section id="order">
@@ -44,7 +52,7 @@
                     <?php } ?>
                 </select>
             </div>
-            <button onclick="order()">Order</button>
+            <button onclick="order()" <?php if ($data['book']['price'] == -1) {echo "disabled";}?>>Order</button>
         </section>
         <section id="reviews">
             <p class="detail-sub-header">Reviews</p>

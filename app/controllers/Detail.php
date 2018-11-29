@@ -19,8 +19,8 @@ class Detail extends Controller
             $_SESSION['expire_token'] = time() + 1200;
 
             setcookie("bookid", $bookid, time() + 3600,'/');
-            $book = $this->model('Book');
-            $data['book'] = $book->readBooksAndRatingByBookId($bookid);
+            $soap = $this->model('SoapHelper');
+            $data['book'] = $soap->getBookByID($bookid);
             $review = $this->model('Reviews');
             $data['review'] = $review->readAllReviewsByBookId($bookid);
             $data["navigation"] = "Browse";
