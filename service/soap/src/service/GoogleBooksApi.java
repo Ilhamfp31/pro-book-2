@@ -29,7 +29,7 @@ public class GoogleBooksApi {
      */
     public static ArrayList<Book> getBookByTitle(String title) {
         ArrayList<Book> Books = new ArrayList<>();
-        String apiUrlString = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title + "&key=" + API_KEY;
+        String apiUrlString = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title + "&key=" + API_KEY + "&maxResults=40";
         try {
             HttpURLConnection connection = null;
             // Build Connection.
@@ -58,7 +58,9 @@ public class GoogleBooksApi {
                 JSONArray arrayOfBooks = responseJson.getJSONArray("items");
                 for (int i = 0; i < arrayOfBooks.length(); ++i) {
                     Book entry = getBook(arrayOfBooks.getJSONObject(i));
-                    Books.add(entry);
+                    if (entry.getImage() != STRING_UNDEFINED && entry.getCategory() != STRING_UNDEFINED){
+                        Books.add(entry);
+                    }
                 }
             } else {
                 System.out.println("Hasil kosong");
