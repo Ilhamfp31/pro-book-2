@@ -50,7 +50,7 @@ class Home extends Controller
     {
         session_start();
         session_destroy();
-
+        $temp = $this->model("Token")->deleteToken($_COOKIE['access_token']);
         setcookie("id", "", time() - 3600,'/');
         setcookie("access_token","",time()-3600,'/');
         header("location: /login");

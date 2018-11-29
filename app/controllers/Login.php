@@ -32,12 +32,19 @@ class Login extends Controller
         if (count($temp) > 0){
             if (password_verify($password, $temp["password"]) or ($password==$temp['password'])){
                 session_start();
-                setcookie('id', $model->readUserIdByUsername($temp['username'])['userID'], time() + 1800, '/');
+                $id = $model->readUserIdByUsername($temp['username'])['userID'];
+                setcookie('id', $id, time() + 1800, '/');
                 $token = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
 
                 setcookie('access_token', $token , time() + 1800, '/');
                 $_SESSION['access_token'] = $token;
                 $_SESSION['expire_token'] = time() + 1200;
+
+
+                // Insert token to db
+                $browser = get_browser(null, true)['browser'];
+                $model_token = $this->model('Token');
+                $temp_token = $model_token->insertToken($id, $token, $browser, 'test');
 
                 $_SESSION['username'] = $temp['username'];
                 header('Location: /home');
