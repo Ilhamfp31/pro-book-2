@@ -29,10 +29,10 @@ class Order extends Model
         return $data;
     } 
     
-    function createOrder($bookid, $qty, $userid)
+    function createOrder($bookid, $userid, $orderid)
     {
-        $sql = "INSERT INTO orders(bookID, date, quantity, userID)
-                VALUES (" . $bookid . ", '" . date("Y-m-d H:i:s") . "', " . $qty . ", " . $userid . ")";
+        $sql = "INSERT INTO orders(bookID, userID, orderID)
+                VALUES ('" . $bookid . "', " . $userid . ", " . $orderid . ")";
         $this->conn->query($sql);
         return $this->conn->insert_id;
     }
