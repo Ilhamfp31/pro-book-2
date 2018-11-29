@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static service.GoogleBooksApi.getBookByCategory;
 import static service.GoogleBooksApi.getBookByTitle;
 import static service.GoogleBooksApi.getBookDetailByID;
 
@@ -35,7 +36,9 @@ public class HelloWorld {
 
 //       //         test getBookByTitle
         ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
-//        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
+        ArrayList<Book> testGetBookByCategory = getBookByCategory("Cooking");
+        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
+        System.out.println("\n\n Test balikan2, Judul:" + testGetBookByCategory.get(0).getTitle());
 //
 //        //       test getBookDetailByID
 //        Book testGetBookDetailByID = getBookDetailByID("Xl9nDwAAQBAJ");
