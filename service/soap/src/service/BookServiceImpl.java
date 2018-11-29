@@ -74,7 +74,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Boolean buyBook(String idBuku, Integer jumlah, String norek) {
+    public long buyBook(String idBuku, Integer jumlah, String norek) {
 
         BookRepository bookRepository = new BookRepository();
         bookRepository.connect();
@@ -87,24 +87,23 @@ public class BookServiceImpl implements BookService {
 
         if (harga.getHarga() == -1) {
             bookRepository.disconnect();
-            return false;
+            return -1;
         }
 
         if (WebServiceBankApi.transfer(norek, BookServiceImpl.norek_juragan, (float) (jumlah*harga.getHarga()))) {
             Book book = GoogleBooksApi.getBookDetailByID(idBuku);
             DaftarPenjualan penjualan = new DaftarPenjualan(book.getId(), book.getCategory(), jumlah);
             try {
-                bookRepository.insertDaftarPenjualan(penjualan);
+                long idPenjualan = bookRepository.insertDaftarPenjualan(penjualan);
+                bookRepository.disconnect();
+                return idPenjualan;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            bookRepository.disconnect();
-            return true;
         }
-        else {
-            bookRepository.disconnect();
-            return false;
-        }
+
+        bookRepository.disconnect();
+        return -1;
     }
 
     @Override
