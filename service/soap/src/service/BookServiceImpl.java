@@ -24,22 +24,20 @@ public class BookServiceImpl implements BookService {
         bookRepository.connect();
         BooksWrapper books = new BooksWrapper();
         books.setBooks(GoogleBooksApi.getBookByTitle(title));
-        for (Book book : books.getBooks()) {
-            DaftarHarga daftarHarga = null;
-            try {
-                daftarHarga = bookRepository.getDaftarHarga(book.getId());
-                if (daftarHarga.getHarga() != -1) {
-                    book.setPrice(daftarHarga.getHarga());
+        if (books.getBooks() != null) {
+            for (Book book : books.getBooks()) {
+                DaftarHarga daftarHarga = null;
+                try {
+                    daftarHarga = bookRepository.getDaftarHarga(book.getId());
+                    if (daftarHarga.getHarga() != -1) {
+                        book.setPrice(daftarHarga.getHarga());
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         bookRepository.disconnect();
-
-        for (Book book: books.getBooks()) {
-            System.out.println(book);
-        }
 
         return books;
     }
