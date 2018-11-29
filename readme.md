@@ -22,7 +22,7 @@ Setiap kelompok beranggotakan **3 orang dari kelas yang sama**. Jika jumlah maha
 4. Ubah hak akses repository hasil Fork anda menjadi **private**.
 5. [DELIVERABLE] Buat tugas sesuai spesifikasi dan silakan commit pada repository anda (hasil fork). Lakukan berberapa commit dengan pesan yang bermakna, contoh: `add register form`, `fix logout bug`, jangan seperti `final`, `benerin dikit`. Disarankan untuk tidak melakukan commit dengan perubahan yang besar karena akan mempengaruhi penilaian (contoh: hanya melakukan satu commit kemudian dikumpulkan). Sebaiknya commit dilakukan setiap ada penambahan fitur. **Commit dari setiap anggota tim akan mempengaruhi penilaian individu.** Jadi, setiap anggota tim harus melakukan sejumlah commit yang berpengaruh terhadap proses pembuatan aplikasi.
 6. Hapus bagian yang tidak perlu dari *readme* ini.
-7. [DELIVERABLE] Berikan penjelasan mengenai hal di bawah ini pada bagian **Penjelasan** dari *readme* repository git Anda: ((masih spek taun lalu))
+7. [DELIVERABLE] Berikan penjelasan mengenai hal di bawah ini pada bagian **Penjelasan** dari *readme* repository git Anda:
     - Basis data dari sistem yang Anda buat, yaitu basis data aplkasi pro-book, webservice bank, dan webservice buku.
     - Konsep *shared session* dengan menggunakan REST.
     - Mekanisme pembangkitan token dan expiry time pada aplikasi Anda.
@@ -79,6 +79,11 @@ Karena memanfaatkan kedua webservice tersebut, akan ada perubahan pada aplikasi 
 - Pada halaman detail buku, terdapat rekomendasi buku yang didapatkan dari webservice buku. Asumsikan sendiri tampilan yang sesuai.
 
 - Halaman search-book dan search-result pada tugas 1 digabung menjadi satu halaman search yang menggunakan AngularJS. Proses pencarian buku diambil dari webservice buku menggunakan **AJAX**. Hasil pencarian akan ditampilkan pada halaman search menggunakan AngularJS, setelah mendapatkan respon dari webservice. Ubah juga tampilan saat melakukan pencarian untuk memberitahu jika aplikasi sedang melakukan pencarian atau tidak ditemukan hasil.
+
+    Berikut adalah komponen pada AngularJS yang harus digunkan pada aplikasi Anda:
+    - Data binding (ng-model directives)
+    - Controllers (ng-controllers)
+    - ng-repeat, untuk menampilkan list
 
 - Aplikasi Anda menggunakan `access token` untuk menentukan active user. Mekanisme pembentukan dan validasi access token dapat dilihat di bagian *Mekanisme access token*.
 
