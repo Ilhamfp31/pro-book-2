@@ -28,9 +28,18 @@ public class GoogleBooksApi {
       'category'
      */
     public static ArrayList<Book> getBookByTitle(String title) {
-        ArrayList<Book> Books = new ArrayList<>();
         String apiUrlString = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title + "&key=" + API_KEY + "&maxResults=40";
+        return getBooks(apiUrlString);
+    }
+
+    public static ArrayList<Book> getBookByCategory(String category) {
+        String apiUrlString = "https://www.googleapis.com/books/v1/volumes?q=subject:" + category + "&key=" + API_KEY + "&maxResults=40";
+        return getBooks(apiUrlString);
+    }
+
+    private static ArrayList<Book> getBooks(String apiUrlString) {
         try {
+            ArrayList<Book> Books = new ArrayList<>();
             HttpURLConnection connection = null;
             // Build Connection.
             connection = getHttpURLConnection(apiUrlString, connection);
