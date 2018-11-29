@@ -168,7 +168,7 @@ public class BookRepository {
         DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1);
 
         try {
-            String query = "SELECT * FROM daftar_penjualan WHERE category = \"" + category + "\" ORDER BY jumlah DESC LIMIT 1;";
+            String query = "SELECT * FROM daftar_penjualan WHERE LOWER(kategori) LIKE LOWER(\"" + category + "\") ORDER BY jumlah DESC LIMIT 1;";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 answer.setId_buku(rs.getString("id_buku"));
