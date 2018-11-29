@@ -5,7 +5,8 @@ function order() {
     xhttp.open("POST", "/detail/order");
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
+        if (this.readyState == 4 && this.status == 200 && this.responseText != -1) {
             document.getElementById("transaction-number").innerHTML = this.responseText;
             document.getElementById("notif").setAttribute("style", "display: flex");
         }
