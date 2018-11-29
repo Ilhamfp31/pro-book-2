@@ -137,20 +137,15 @@ public class BookRepository {
         return answer;
     }
 
-    public void insertDaftarPenjualan(DaftarPenjualan input) throws SQLException {
+    public void insertDaftarPenjualan( DaftarPenjualan input) throws SQLException {
         if (connection == null) {
             this.connect();
         }
         Statement st = connection.createStatement();
         try {
-            DaftarPenjualan testExist = this.getDaftarPenjualan(input.getId_buku());
-            if (testExist.isValid()) {
-                String query = String.format("UPDATE daftar_penjualan SET jumlah = %d WHERE id_buku = \"%s\";", input.getJumlah() + testExist.getJumlah(), input.getId_buku());
-                st.executeUpdate(query);
-            } else {
-                String query = String.format("INSERT INTO daftar_penjualan VALUES (\"%s\", \"%s\", %d);", input.getId_buku(), input.getKategori(), input.getJumlah());
-                st.executeUpdate(query);
-            }
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            String query = String.format("INSERT INTO daftar_penjualan(id_buku, kategori, jumlah, timestamp) VALUES (\"%s\", \"%s\", %d, %d);", input.getId_buku(), input.getKategori(), input.getJumlah(), timestamp.getTime());
+            st.executeUpdate(query);
         } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());

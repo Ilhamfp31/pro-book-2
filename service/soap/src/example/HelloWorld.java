@@ -33,13 +33,13 @@ public class HelloWorld {
 
     public static void main(String[] argv) {
 
-//       test getBookByTitle
-        ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
-        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
-
-        //       test getBookDetailByID
-        Book testGetBookDetailByID = getBookDetailByID("Xl9nDwAAQBAJ");
-        System.out.println("\n\n Test balikan2, Judul:" + testGetBookDetailByID.getTitle());
+//       //         test getBookByTitle
+//        ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
+//        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
+//
+//        //       test getBookDetailByID
+//        Book testGetBookDetailByID = getBookDetailByID("Xl9nDwAAQBAJ");
+//        System.out.println("\n\n Test balikan2, Judul:" + testGetBookDetailByID.getTitle());
 
 
         // test BookRepository

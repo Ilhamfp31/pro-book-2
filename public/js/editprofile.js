@@ -19,6 +19,7 @@ toggle_btn = function() {
         btn.classList.add("save-button");
     }
     else {
+        btn.disabled = true;
         btn.classList.add("disabled-save-button");
         btn.classList.remove("save-button");
     }
