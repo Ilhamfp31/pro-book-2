@@ -37,9 +37,12 @@ class Detail extends Controller
         
         $_SESSION['expire_token'] = time()+1200;
         $model = $this->model('Order');
+        $model_user = $this->model('User');
         $soap = $this->model('SoapHelper');
         $entityBody = json_decode(file_get_contents('php://input'), true);
-        $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], /* KARTU */);
+        //TODO MASUKKIN KARTU NASABAH ID
+        $user = $model_user->readUserById($_COOKIE['id']);
+        $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], $user['no_kartu']);
         if ($orderid != -1) {
             $orderid = $model->createOrder($_COOKIE['bookid'], $_COOKIE['id'], $orderid);
         }
