@@ -19,12 +19,13 @@ class Order extends Model
 
     function readReviewByOrderID($orderid)
     {
-        $sql = "SELECT author, bookPicture, title, userID, orders.orderID AS orderID
-                FROM orders INNER JOIN book ON orders.bookID = book.bookID
-                LEFT JOIN review ON review.orderID=orders.orderID
-                WHERE orders.orderID = '" . $orderid . "'";
-        $result = $this->conn->query($sql);
-        return $result->fetch_assoc();
+        $sql = "SELECT bookID FROM orders WHERE orders.id='" . $orderid . "'";
+        $result = $this->conn->query($sql)->fetch_assoc();
+        
+        require_once ('app/models/SoapHelper.php');
+        $soap = new SoapHelper();
+        $data = $soap->getBookByID($result['bookID']);
+        return $data;
     } 
     
     function createOrder($bookid, $userid, $orderid)

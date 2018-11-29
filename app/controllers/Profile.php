@@ -4,8 +4,10 @@ class Profile extends Controller
 {
     public function index()
     {
-    	session_start();
-
+		if (!isset($_SESSION)) {
+            session_start();            
+		}
+		
     	if (isset($_COOKIE['access_token'])) {
             $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
         } else {

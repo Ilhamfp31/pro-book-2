@@ -3,8 +3,10 @@ class Review extends Controller
 {
     public function index($orderid)
     {
-        session_start();
-
+        if (!isset($_SESSION)) {
+            session_start();            
+        }
+        
         if (isset($_COOKIE['access_token'])) {
             $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
         } else {
@@ -29,8 +31,9 @@ class Review extends Controller
 
     public function submit()
     {
-        session_start();
-
+        if (!isset($_SESSION)) {
+            session_start();            
+        }
 
         if (isset($_COOKIE['access_token'])) {
             $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);

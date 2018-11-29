@@ -3,8 +3,10 @@ class Register extends Controller
 {
     public function index()
     {
-        session_start();
-
+        if (!isset($_SESSION)) {
+            session_start();            
+        }
+        
         if (isset($_COOKIE['access_token'])) {
             $access_valid =  ($_COOKIE['access_token'] == $_SESSION['access_token']) && (time() < $_SESSION['expire_token']);
         } else {
@@ -35,7 +37,9 @@ class Register extends Controller
         $model = $this->model('User');
         if ($model->createUser($user)) {
 
-            session_start();
+            if (!isset($_SESSION)) {
+                session_start();            
+            }
 
             setcookie('id', $model->readUserIdByUsername($user['username'])['userID'], time() + 3600,'/');
             $token = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
