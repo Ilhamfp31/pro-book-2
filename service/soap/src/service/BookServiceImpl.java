@@ -4,8 +4,11 @@ import java.sql.SQLException;
 import java.util.*;
 
 import javax.jws.WebService;
+import javax.xml.ws.Response;
+import javax.xml.ws.ResponseWrapper;
 
 import model.Book;
+import model.BooksWrapper;
 import model.DaftarHarga;
 import model.DaftarPenjualan;
 import repository.BookRepository;
@@ -16,11 +19,12 @@ public class BookServiceImpl implements BookService {
     private static final String norek_juragan = "5276132361916817";
 
     @Override
-    public ArrayList<Book> getBookByTitle(String title) {
+    public BooksWrapper getBookByTitle(String title) {
         BookRepository bookRepository = new BookRepository();
         bookRepository.connect();
-        ArrayList<Book> bookList = GoogleBooksApi.getBookByTitle(title);
-        for (Book book : bookList) {
+        BooksWrapper books = new BooksWrapper();
+        books.setBooks(GoogleBooksApi.getBookByTitle(title));
+        for (Book book : books.getBooks()) {
             DaftarHarga daftarHarga = null;
             try {
                 daftarHarga = bookRepository.getDaftarHarga(book.getId());
@@ -32,7 +36,12 @@ public class BookServiceImpl implements BookService {
             }
         }
         bookRepository.disconnect();
-        return bookList;
+
+        for (Book book: books.getBooks()) {
+            System.out.println(book);
+        }
+
+        return books;
     }
 
     @Override

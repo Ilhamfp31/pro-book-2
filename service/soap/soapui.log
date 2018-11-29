@@ -1,3 +1,5 @@
-2018-11-27 08:45:19,722 WARN  [DefaultSoapUICore] Missing folder [/home/priagung/ext] for external libraries
-2018-11-27 08:45:20,056 INFO  [DefaultSoapUICore] initialized soapui-settings from [/home/priagung/soapui-settings.xml]
-2018-11-27 08:45:20,569 INFO  [WorkspaceImpl] Loading workspace from [/home/priagung/intellij-soapui-workspace.xml]
+2018-11-28 21:05:23,892 WARN  [DefaultSoapUICore] Missing folder [/home/priagung/ext] for external libraries
+2018-11-28 21:05:24,128 INFO  [DefaultSoapUICore] initialized soapui-settings from [/home/priagung/soapui-settings.xml]
+2018-11-28 21:05:24,578 INFO  [WorkspaceImpl] Loading workspace from [/home/priagung/intellij-soapui-workspace.xml]
+2018-11-28 22:27:29,987 INFO  [WorkspaceImpl] Saved workspace to [/home/priagung/intellij-soapui-workspace.xml]
+2018-11-28 22:27:29,998 INFO  [DefaultSoapUICore] Settings saved to [/home/priagung/soapui-settings.xml]

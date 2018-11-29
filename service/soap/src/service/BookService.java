@@ -3,8 +3,10 @@ package service;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import javax.xml.ws.Response;
 
 import model.Book;
+import model.BooksWrapper;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -14,7 +16,7 @@ import java.util.*;
 public interface BookService {
 
     @WebMethod
-    ArrayList<Book> getBookByTitle(String title);
+    BooksWrapper getBookByTitle(String title);
 
     @WebMethod
     Book getRecommendation(String... categories);

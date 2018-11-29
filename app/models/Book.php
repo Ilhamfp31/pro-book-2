@@ -26,4 +26,24 @@ class Book extends Model
         $result = $this->conn->query($sql);
         return $result->fetch_assoc();
     }
+
+    function readRatingByBookId($bookid)
+    {
+        $sql = "SELECT COUNT(reviewID) AS votes, AVG(rating) AS avg_rating
+            FROM review WHERE review.orderID=" . $bookid;
+        $result = $this->conn->query($sql);
+        return $result->fetch_assoc();
+    }
+
+    function getBookByKeyword($keyword) 
+    {
+        $soap = new SoapClient("http://localhost:9000/BookService?wsdl");
+        $data = $soap->getBookByTitle($keyword);
+        foreach ($data as $key => $value) {
+            $data[$key]["avg_rating"] = ($this->readRatingByBookId($value["id"]))["avg_rating"];
+            $data[$key]["votes"] = ($this->readRatingByBookId($value["id"]))["votes"];
+        }
+        return $data;
+        
+    }
 }
