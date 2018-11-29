@@ -35,11 +35,18 @@ class SoapHelper {
 
     public function getRecommendation($categories) {
         if (!is_array($categories)) {
-            $categories = array($categories);
+            $categories = explode('/', $categories);
         }
         $data = $this->conn->getRecommendation($categories);
         $array = json_decode(json_encode($data), True);
-        return $array;
+        $output["bookID"] = $array["id"];
+        $output["title"] = $array["title"];
+        $output["author"] = $array["author"];
+        $output["bookPicture"] = $array["image"];
+        $output["synopsis"] = $array["description"];
+        $output["price"] = $array["price"];
+        $output["category"] = $array["category"];
+        return $output;
     }
 
     public function buyBook($id, $quantity, $no_rek) {
