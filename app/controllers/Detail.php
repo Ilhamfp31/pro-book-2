@@ -23,9 +23,11 @@ class Detail extends Controller
         }
         else {
             setcookie("bookid", $bookid, time() + 3600,'/');
+            $book = $this->model('Book');
             $soap = $this->model('SoapHelper');
             $review = $this->model('Reviews');
             $data['book'] = $soap->getBookByID($bookid);
+            $data['book']['avg_rating'] = $book->readRatingByBookId($bookid)['avg_rating'];
             $data['recommendation'] = array($soap->getRecommendation($data['book']['category']));
             if (strlen($data['recommendation'][0]['synopsis']) > 300) {
                 $data['recommendation'][0]['synopsis'] = substr($data['recommendation'][0]['synopsis'], 0, 300);
