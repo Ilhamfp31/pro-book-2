@@ -10,7 +10,7 @@
         </div>
 
         <div id="logout-button">
-            <a href="/Home/logout">
+            <a href="/Home/logout" onclick="signOut()">
                 <img src="../../public/images/logout.png">
             </a>
         </div>

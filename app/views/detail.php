@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Detail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="1039450104464-p0bpievqv6nfcbhrcvbl2vrdkg7jgnnk.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/main.css" />
 </head>
 <body>
@@ -105,5 +106,18 @@
         </div>
     </div>
     <script src="/public/js/detail.js"></script>
+    <script>
+        function onLoad() {
+            gapi.load('auth2', function() {
+            gapi.auth2.init();
+            });
+        }        
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
 </body>
 </html>
