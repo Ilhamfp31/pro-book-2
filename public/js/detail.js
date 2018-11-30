@@ -1,4 +1,4 @@
-function order() {
+function order(book_id) {
     var total_order_element = document.getElementById("total-order");
     var token = document.getElementById("token").value;
     console.log("token: "+token);
@@ -23,6 +23,7 @@ function order() {
     }
     xhttp.send(JSON.stringify({
         total : sum_order,
+        book_id : book_id,
         token : token}));
 }
 

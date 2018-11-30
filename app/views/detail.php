@@ -58,7 +58,7 @@
                   <span class="label">Token</span>
                   <span class="border"></span>
                 </label>
-            <button onclick="order()" <?php if ($data['book']['price'] == -1) {echo "disabled";}?>>Order</button>
+            <button onclick="order('<?php echo $data['book']['bookID']; ?>')" <?php if ($data['book']['price'] == -1) {echo "disabled";}?>>Order</button>
         </section>
         <section id="reviews">
             <p class="detail-sub-header">Reviews</p>

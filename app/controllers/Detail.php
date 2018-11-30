@@ -65,9 +65,9 @@ class Detail extends Controller
         $soap = $this->model('SoapHelper');
         $entityBody = json_decode(file_get_contents('php://input'), true);
         $user = $model_user->readUserById($user_id);
-        $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], $user['no_kartu'], $entityBody['token']);
+        $orderid = $soap->buyBook($entityBody['book_id'], $entityBody['total'], $user['no_kartu'], $entityBody['token']);
         if ($orderid != -1) {
-            $model->createOrder($_COOKIE['bookid'], $user_id, $orderid);
+            $model->createOrder($entityBody['book_id'], $user_id, $orderid);
         }
         echo $orderid;
 
