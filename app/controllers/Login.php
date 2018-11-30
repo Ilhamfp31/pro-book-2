@@ -38,7 +38,6 @@ class Login extends Controller
             if (password_verify($password, $temp["password"]) or ($password==$temp['password'])){
                 session_start();
                 $id = $model->readUserIdByUsername($temp['username'])['userID'];
-                setcookie('id', $id, time() + 1800, '/');
                 $token = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
 
                 setcookie('access_token', $token , time() + 1800, '/');
@@ -57,5 +56,29 @@ class Login extends Controller
         }else{
             echo "<script>window.location.href='/login'; alert('Unknown Username'); </script>";
         }
+    }
+
+    public function tokensignin()
+    {
+        header("Access-Control-Allow-Methods: POST");
+        header("Content-Type: application/json; charset=UTF-8");
+        $id_token = json_decode(file_get_contents("php://input"))->id_token;
+        $payload = json_decode(file_get_contents('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $id_token));
+
+        $user_model = $this->model('User');
+        if ($user = $user_model->readUserByEmail($payload->email)) {
+            $token = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
+            setcookie('access_token', $token , time() + 1800, '/');
+            $model_token = $this->model('Token');
+            $temp_token = $model_token->insertToken($user['userID'], $token);
+
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+            $_SESSION['username'] = $user['username'];
+        }
+        else {
+            header("HTTP/1.1 404 Not Found");
+        }      
     }
 }

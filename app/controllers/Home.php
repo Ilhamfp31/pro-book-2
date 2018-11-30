@@ -9,7 +9,8 @@ class Home extends Controller
         }
         
         if (isset($_COOKIE['access_token'])) {
-            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+            $id_user = $this->model('Token')->validateToken($_COOKIE['access_token']);
+            if ($id_user) {
                 $access_valid = true;
             } else {
                 $access_valid = false;
@@ -23,7 +24,7 @@ class Home extends Controller
             exit();
         }
         else {
-            $data = $this->model("User")->readUserById($_COOKIE['id']);
+            $data = $this->model("User")->readUserById($id_user);
             $data["navigation"] = "Browse";
             $this->view('home' ,$data);
         }
@@ -62,7 +63,6 @@ class Home extends Controller
         }
         session_destroy();
         $temp = $this->model("Token")->deleteToken($_COOKIE['access_token']);
-        setcookie("id", "", time() - 3600,'/');
         setcookie("access_token","",time()-3600,'/');
         header("location: /login");
         exit();

@@ -43,7 +43,7 @@ public class Book implements Serializable {
         this.title = STRING_UNDEFINED;
         this.author = STRING_UNDEFINED;
         this.description = STRING_UNDEFINED;
-        this.image = "https://almasoem.sch.id/wp-content/uploads/2016/02/IMG_9738-Large-1024x683.jpg";
+        this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/401px-No_picture_available.png";
         this.price = -1;
     }
 

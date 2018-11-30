@@ -904,6 +904,13 @@ body {
     display: none;
 }
 
+.register-google-login {
+    display: flex;
+    flex-flow: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
 @keyframes lds-spinner {
     0% {
         opacity: 1;

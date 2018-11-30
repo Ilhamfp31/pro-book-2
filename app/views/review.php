@@ -5,43 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Review</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="1039450104464-p0bpievqv6nfcbhrcvbl2vrdkg7jgnnk.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/main.css" />
 </head>
 <body>
     <?php require_once('navbar.php') ?>
-        <div class="container">
-            <div id="review-detail">
-                <div id=review-desc>
-                    <h1 class="page-header"><?php echo $data['title']?></h1>
-                    <p id="author"><?php echo $data['author']?></p>
-                </div>
-                <img src=<?php echo $data['bookPicture']?> class="review-image">
+    <div class="container">
+        <div id="review-detail">
+            <div id=review-desc>
+                <h1 class="page-header"><?php echo $data['title']?></h1>
+                <p id="author"><?php echo $data['author']?></p>
             </div>
-            <form action="/review/submit" id ="review-form" method="POST">
-                <div class="review-rate">
-                    <p id="review-addrate">Add Rating</p>
-                    <div class="rating-star-wrapper">
-                      <img src="/public/images/star.png" class="filled-star star star1">
-                      <img src="/public/images/star-unfilled.png" class="unfilled-star star star1">
-                      <img src="/public/images/star.png" class="filled-star star star2">
-                      <img src="/public/images/star-unfilled.png" class="unfilled-star star star2">
-                      <img src="/public/images/star.png" class="filled-star star star3">
-                      <img src="/public/images/star-unfilled.png" class="unfilled-star star star3">
-                      <img src="/public/images/star.png" class="filled-star star star4">
-                      <img src="/public/images/star-unfilled.png" class="unfilled-star star star4">
-                      <img src="/public/images/star.png" class="filled-star star star5">
-                      <img src="/public/images/star-unfilled.png" class="unfilled-star star star5">
-                    </div>
-                    <input id="ratinginput" type="number" name="rating" value="">
-                    <p id="review-addrate">Add Comment</p>
-                    <textarea id = "commentinput" class ="comment-input" form ="review-form" name="comment"></textarea>
-                </div>
-                <div class ="comment-row">
-                    <a href="/History" id = "back-button">Back</a>
-                    <button id="save-button" class="disabled-save-button" type="submit" disabled>SAVE</button>
-                </div>
-            </form>
+            <img src=<?php echo $data['bookPicture']?> class="review-image">
         </div>
+        <form action="/review/submit" id ="review-form" method="POST">
+            <div class="review-rate">
+                <p id="review-addrate">Add Rating</p>
+                <div class="rating-star-wrapper">
+                    <img src="/public/images/star.png" class="filled-star star star1">
+                    <img src="/public/images/star-unfilled.png" class="unfilled-star star star1">
+                    <img src="/public/images/star.png" class="filled-star star star2">
+                    <img src="/public/images/star-unfilled.png" class="unfilled-star star star2">
+                    <img src="/public/images/star.png" class="filled-star star star3">
+                    <img src="/public/images/star-unfilled.png" class="unfilled-star star star3">
+                    <img src="/public/images/star.png" class="filled-star star star4">
+                    <img src="/public/images/star-unfilled.png" class="unfilled-star star star4">
+                    <img src="/public/images/star.png" class="filled-star star star5">
+                    <img src="/public/images/star-unfilled.png" class="unfilled-star star star5">
+                </div>
+                <input id="ratinginput" type="number" name="rating" value="">
+                <p id="review-addrate">Add Comment</p>
+                <textarea id = "commentinput" class ="comment-input" form ="review-form" name="comment"></textarea>
+            </div>
+            <div class ="comment-row">
+                <a href="/History" id = "back-button">Back</a>
+                <button id="save-button" class="disabled-save-button" type="submit" disabled>SAVE</button>
+            </div>
+        </form>
+    </div>
     <script src="/public/js/review.js"></script>
+    <script>
+        function onLoad() {
+            gapi.load('auth2', function() {
+            gapi.auth2.init();
+            });
+        }        
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
 </body>
 </html>
