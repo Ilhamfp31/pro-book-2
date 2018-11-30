@@ -1,5 +1,6 @@
 module.exports = function(app) {
     const validasi = require('../controllers/validasi');
+    const key = require('../controllers/key');
     const nasabah = require('../controllers/transfer');
 
     app.use(function(req, res, next) {
@@ -20,4 +21,10 @@ module.exports = function(app) {
 
     app.route('/transfer')
     	.post(nasabah.transfer);
+
+    app.route('/key')
+        .post(key.key);
+
+    app.route('/qrcode')
+        .post(key.qrcode);
 };
