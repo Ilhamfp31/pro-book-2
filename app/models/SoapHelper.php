@@ -54,4 +54,10 @@ class SoapHelper {
         $array = json_decode(json_encode($data), True);
         return $array;
     }
+
+    public function getTransactionByID($id) {
+        $data = $this->conn->getTransactionByID($id);
+        $array = json_decode(json_encode($data), True);
+        return $array;
+    }
 }
