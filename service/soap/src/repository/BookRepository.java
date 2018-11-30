@@ -168,7 +168,7 @@ public class BookRepository {
         DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1, 0);
 
         try {
-            String query = "SELECT id_buku, SUM(jumlah) AS jumlah FROM daftar_penjualan WHERE LOWER(kategori) LIKE LOWER(\"" + category + "\") GROUP BY id_buku ORDER BY SUM(jumlah) DESC LIMIT 1;";
+            String query = "SELECT id_buku, SUM(jumlah) AS jumlah FROM daftar_penjualan WHERE LOWER(kategori) LIKE LOWER(\"%" + category + "%\") GROUP BY id_buku ORDER BY SUM(jumlah) DESC LIMIT 1;";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 answer.setId_buku(rs.getString("id_buku"));
