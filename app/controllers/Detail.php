@@ -68,7 +68,7 @@ class Detail extends Controller
         $user = $model_user->readUserById($user_id);
         $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], $user['no_kartu']);
         if ($orderid != -1) {
-            $orderid = $model->createOrder($_COOKIE['bookid'], $user_id, $orderid);
+            $model->createOrder($_COOKIE['bookid'], $user_id, $orderid);
         }
         echo $orderid;
 
