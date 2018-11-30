@@ -5,7 +5,7 @@ class Book extends Model
     function readRatingByBookId($bookid)
     {
         $sql = "SELECT COUNT(reviewID) AS votes, AVG(rating) AS avg_rating
-            FROM review INNER JOIN orders WHERE orders.bookID='" . $bookid . "'";
+        FROM review LEFT JOIN orders ON review.orderID = orders.orderID WHERE orders.bookID='" . $bookid . "'";
         $result = $this->conn->query($sql)->fetch_assoc();
         return $result["avg_rating"] ? $result : array("avg_rating" => 0, "votes" => 0);
     }
