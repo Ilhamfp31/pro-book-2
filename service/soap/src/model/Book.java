@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Book implements Serializable {
 
     private static final long serialVersionUID = -5577579081118070434L;
+    private static final String STRING_UNDEFINED = "Tidak_Diketahui";
 
     private String id;
     private String title;
@@ -39,9 +40,10 @@ public class Book implements Serializable {
 
     public Book(){
         this.id = "-1";
-        this.title = "-";
-        this.author = "-";
-        this.description = "-";
+        this.title = STRING_UNDEFINED;
+        this.author = STRING_UNDEFINED;
+        this.description = STRING_UNDEFINED;
+        this.image = "https://almasoem.sch.id/wp-content/uploads/2016/02/IMG_9738-Large-1024x683.jpg";
         this.price = -1;
     }
 
