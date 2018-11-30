@@ -16,8 +16,84 @@ Melakukan *upgrade* Website toko buku online pada Tugas 1 dengan mengaplikasikan
 
 ## Desain Basis Data
 ### Pro-Book
+Basis data pada aplikasi **Pro-Book** kami terdiri dari 4 Tabel yaitu :
+- **access_token**
+- **orders**
+- **review**
+- **user**
+
+#### access_token
+**access_token** terdiri dari 5 kolom yaitu :
+- **id** : id user yang sedang login
+- **token** : string token yang digenerate ketika user login
+- **browser** : browser yang digunakan oleh user ketika login
+- **ip_address** : ip address dari user ketika login
+- **time** : waktu dimana token kadaluarsa
+
+#### orders
+**orders** terdiri dari 4 kolom yaitu :
+- **id** : primary key
+- **bookID** : id buku pada web service buku yang di order
+- **userID** : id user yang melakukan order
+- **orderID** : id order yang ada pada web service buku
+
+#### review
+**review** terdiri dari 4 kolom yaitu :
+- **reviewID** : primary key
+- **orderID** : id order pada tabel orders dimana review ini ditujukan
+- **comment** : komentar user yang telah melakukan review
+- **rating** : rating dari user untuk review ini
+
+#### user
+**user** terdiri dari 9 kolom yaitu :
+- **userID** : primary key
+- **name** : nama user
+- **username** : nama pengguna user, digunakan untuk login
+- **address** : alamat user
+- **password** : password user
+- **email** : email user
+- **phone** : no telepon user
+- **userPicture** : foto user
+- **no_kartu** : no rekening user
+
 ### Web Service Bank
+Basis data pada aplikasi **Web Service Bank** kami terdiri dari 2 Tabel yaitu :
+- **nasabah**
+- **transaksi**
+
+#### nasabah
+**nasabah** terdiri dari 5 kolom yaitu :
+- **id** : primary key
+- **nama** : nama nasabah
+- **no_kartu** : no rekening nasabah
+- **saldo** : saldo nasabah
+- **secret_key** : untuk keperluan TOTP
+
+#### transaksi
+**transaksi** terdiri dari 5 kolom yaitu :
+- **id** : primary key
+- **no_pengirim** : no rekening pengirim
+- **no_penerima** : no rekening penerima
+- **jumlah** : jumlah uang yang dikirim
+- **timestamp** : waktu dilakukannya transaksi
+
 ### Web Service Buku
+Basis data **Web Service Buku** kami terdiri dari 2 Tabel yaitu :
+- **daftar_harga**
+- **daftar_penjualan**
+
+#### daftar_harga
+**daftar_harga** terdiri dari 2 kolom yaitu :
+- **id_buku** : id buku
+- **harga** : harga buku
+
+#### daftar_penjualan
+**daftar_penjualan** terdiri dari 5 kolom yaitu :
+- **id_daftar_penjualan** : primary key
+- **id_buku** : id buku yang terjual
+- **kategori** : kategori buku yang terjual
+- **jumlah** : jumlah buku yang terjual pada satu satu penjualan
+- **timestamp** : waktu ketika buku terjual
 
 ## Shared Session dengan REST
 
