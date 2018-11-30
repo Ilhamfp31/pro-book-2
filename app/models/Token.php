@@ -24,6 +24,8 @@ class Token extends Model
         $ip_address = $_SERVER['REMOTE_ADDR'];
         $result = $this->conn->query($sql)->fetch_assoc();
         if ($result['id'] && $result['browser'] == $browser && $result['ip_address'] == $ip_address && time() < (int)$result['time']) {
+            $sql = "UPDATE access_token SET time = " . (time() + (int)1200) . " WHERE token = '" . $token . "';" ;
+            $this->conn->query($sql);
             return $result['id'];
         } else {
             return null;

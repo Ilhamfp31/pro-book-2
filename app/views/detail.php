@@ -52,6 +52,11 @@
                     <?php } ?>
                 </select>
             </div>
+                <label for="token" class="inp">
+                  <input type="text" id="token" placeholder="&nbsp;">
+                  <span class="label">Token</span>
+                  <span class="border"></span>
+                </label>
             <button onclick="order()" <?php if ($data['book']['price'] == -1) {echo "disabled";}?>>Order</button>
         </section>
         <section id="reviews">
@@ -98,7 +103,7 @@
         <div id="dialog-msg">
             <img id="check-notif" src="/public/images/check.png">
             <div id="msg-detail">
-                <p>Pemesanan Berhasil!</p>
+                <p id="text-msg-detail">Pemesanan Berhasil!</p>
                 <p>Nomor Transaksi : <span id="transaction-number">3<span></p>
             </div>
             <img id="close-notif" onclick="close_notif()" src="/public/images/close.png">

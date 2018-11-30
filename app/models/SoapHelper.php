@@ -49,8 +49,8 @@ class SoapHelper {
         return $output;
     }
 
-    public function buyBook($id, $quantity, $no_rek) {
-        $data = $this->conn->buyBook($id, $quantity, $no_rek);
+    public function buyBook($id, $quantity, $no_rek, $token) {
+        $data = $this->conn->buyBook($id, $quantity, $no_rek, $token);
         $array = json_decode(json_encode($data), True);
         return $array;
     }
