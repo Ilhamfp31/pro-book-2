@@ -43,9 +43,17 @@
 				<div class ="profile-row">
 					<div class ="profile-icon"><img src="../../public/images/bank.png"></div>
 					<div class ="profile-label">Bank account</div>
-					<div class ="profile-value"><?php echo $data['no_kartu']?></div>
+					<div  class ="profile-value"><?php echo $data['no_kartu']?></div>
+					<input id="no-kartu" type="button" value="<?php echo $data['no_kartu']?>" hidden/>
+				</div>
+				<div class="qr-code">
+					<p>QR code</p>
+					<img id="qr-img" src="">
 				</div>
 			</div>
+
+			
 		</div>
+	<script src="../../public/js/profile.js"></script>
 </body>
 </html>
