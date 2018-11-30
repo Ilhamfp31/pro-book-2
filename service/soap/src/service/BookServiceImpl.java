@@ -44,7 +44,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getRecommendation(String... categories) {
-        Book book;
+        Book book = new Book();
         BookRepository bookRepository = new BookRepository();
         bookRepository.connect();
         DaftarPenjualan daftarPenjualan = new DaftarPenjualan("undefined", "undefined", -1);
@@ -68,7 +68,11 @@ public class BookServiceImpl implements BookService {
             book = GoogleBooksApi.getBookDetailByID(daftarPenjualan.getId_buku());
         }
         bookRepository.disconnect();
-        return book;
+        if (book == null) {
+            return new Book();
+        } else {
+            return book;
+        }
     }
 
     @Override

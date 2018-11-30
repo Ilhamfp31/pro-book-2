@@ -591,6 +591,24 @@ body {
     background-color: grey;
 }
 
+.button-recommendation {
+    width: 130px;
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: #00AEEF;
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    float: right;
+    cursor: pointer;
+}
+
+.button-recommendation:disabled {
+    background-color: grey;
+}
+
 .detail-sub-header {
     font-size: 40px;
     margin: 0 0 10px 0;
