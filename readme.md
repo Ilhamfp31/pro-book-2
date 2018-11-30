@@ -4,7 +4,6 @@ Melakukan *upgrade* Website toko buku online pada Tugas 1 dengan mengaplikasikan
 
 ## Tujuan Pembuatan Tugas
 
-Diharapkan dengan tugas ini anda dapat mengerti:
 * Produce dan Consume REST API
 * Produce dan Consume Web Services dengan protokol SOAP
 * Membuat web application yang akan memanggil web service secara REST dan SOAP.
@@ -27,9 +26,6 @@ Diharapkan dengan tugas ini anda dapat mengerti:
 ## Kelebihan Microservice dibanding Monolitik
 
 ## Pembagian Tugas
-"Gaji buta dilarang dalam tugas ini. Bila tak mengerti, luangkan waktu belajar lebih banyak. Bila belum juga mengerti, belajarlah bersama-sama kelompokmu. Bila Anda sekelompok bingung, bertanyalah (bukan menyontek) ke teman seangkatanmu. Bila seangkatan bingung, bertanyalah pada asisten manapun."
-
-*Harap semua anggota kelompok mengerjakan SOAP dan REST API kedua-duanya*. Tuliskan pembagian tugas seperti berikut ini.
 
 REST :
 1. Validasi nomor kartu : 13516140
