@@ -33,7 +33,7 @@
                 </div>
                 <div class="history-order">
                     <p class="history-info"><b><?php echo date('d F Y', strtotime($element['date']))?></b></p>
-                    <p class="history-number"><b>Nomor Order : #<?php echo $a--;?></b></p>
+                    <p class="history-number"><b>Nomor Order : #<?php echo $element['orderID'];?></b></p>
                     <?php if(isset($element['reviewID'])) {?>
                     <?php } else {?>
                         <a href="/review/index/<?php echo $element['orderID']?>" class="detail-button">Review</a>
