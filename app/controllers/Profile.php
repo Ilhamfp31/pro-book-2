@@ -53,7 +53,8 @@ class Profile extends Controller
     	session_start();
 
         if (isset($_COOKIE['access_token'])) {
-            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+            $user_id = $this->model('Token')->validateToken($_COOKIE['access_token']);
+            if ($user_id) {
                 $access_valid = true;
             } else {
                 $access_valid = false;
@@ -77,7 +78,7 @@ class Profile extends Controller
 			} else {
                 $user['userPicture'] = $_POST['avaHidden'];
 			}
-
+            
 	        $model = $this->model('User');
 	        if ($model->updateUserById($user)) {
 	        	$data = $model->readUserById($user['id']);
@@ -88,7 +89,6 @@ class Profile extends Controller
 	            echo "Internal Server Error";
 	            header('Location: /home');
 	            exit();
-
 	        }
     	} else {
     		header('Location: /login');

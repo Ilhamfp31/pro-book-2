@@ -38,9 +38,11 @@ exports.transfer = function(req, res) {
         				}
         				else {
         					if (rows.length == 0) {
+                                console.log("Tidak ditemukan nomor kartu");
         						response.notFound('No kartu pengirim tidak ditemukan', res);
         					}
         					else if (Number(rows[0].saldo) < jumlah) {
+                                console.log("Saldo tidak cukup");
         						response.notAcceptable('Saldo pengirim tidak cukup', res);
         					}
         					else {
@@ -54,6 +56,7 @@ exports.transfer = function(req, res) {
         							}
         							else {
         								if (rows.length == 0) {
+                                            console.log("Tidak ditemukan nomor kartu");
         									response.notFound('No kartu penerima tidak ditemukan', res);
         								}
         								else {
@@ -75,6 +78,7 @@ exports.transfer = function(req, res) {
         										            });
         												}
         												else {
+                                                            console.log("Transfer berhasil");
         													response.ok('Transfer berhasil', res);
         												}
         											})
@@ -88,6 +92,7 @@ exports.transfer = function(req, res) {
         			});
 
             	} else {
+                    console.log("Token salah");
             		response.notAcceptable('Token salah', res);
             	}
 	        }
