@@ -96,9 +96,10 @@ Basis data **Web Service Buku** kami terdiri dari 2 Tabel yaitu :
 - **timestamp** : waktu ketika buku terjual
 
 ## Shared Session dengan REST
+REST sesuai namanya, Representational state transfer, tidak memiliki state atau biasa disebut stateless. Hal ini berarti server tidak menyimpan informasi mengenai state dari clientnya. Client session state disimpan pada masing-masing client, dan ketika akan melakukan request, client memberikan informasi-informasi yang dibutuhkan. Hal ini menyebabkan client tidak terikat pada satu server yang melayaninya dan server tidak perlu menyimpan informasi mengenai client. Hal ini yang mendukung sistem dengan arsitektur REST dapat dikatakan lebih scalable dan dapat mendukung banyak penggunaan secara concurrent.
 
 ## Pembangkitan Token dan Expiry Time
-Pembangkitan token kami lakukan setiap kali user login. Setiap user login, kami memilih sebuah karakter [a-z && A-Z] random yang kemudian disambung dengan 31 karakter hasil hashing dari banyaknya detik sejak 1 Januari 1970. Kemudian kami menyimpan token yang telah dibangkitkan tersebut bersama dengan browser, ip address, dan expiry time token pada database. Expiry time token adalah 1200 detik sejak token pertama kali dimasukkan ke database.
+Pembangkitan token kami lakukan setiap kali user login. Setiap user login, kami memilih 1 karakter [a-z && A-Z] random yang kemudian disambung dengan 31 karakter hasil hashing md5 dari banyaknya detik sejak 1 Januari 1970. Kemudian kami menyimpan token yang telah dibangkitkan tersebut bersama dengan browser, ip address, dan expiry time token pada database. Expiry time token adalah 1200 detik sejak token pertama kali dimasukkan ke database.
 
 ## Kelebihan Microservice dibanding Monolitik
 - Untuk setiap service nya, kompleksitas dapat berkurang dengan mendekomposisi program menjadi berbagai service sehingga setiap service nya lebih mudah didevelop, dimengerti karena sesuai fungsionalitasnya, dan dimaintain.
