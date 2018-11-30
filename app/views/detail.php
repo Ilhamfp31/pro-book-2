@@ -87,7 +87,7 @@
                             <p class="result-info"><?php echo $element['author']?></p>
                         <?php } ?>
                         <p class="result-desc"><?php echo $element['synopsis']?></p>
-                        <a href="/detail/index/<?php echo $element['bookID']?>" class="detail-button">Detail</a>
+                        <button class="button-recommendation" onclick="window.location.href = '/detail/index/<?php echo $element['bookID']?>'" <?php if ($element['bookID'] == -1) {echo 'disabled';}?>>Detail</button>
                     </div>
                 </div>
             </div>
