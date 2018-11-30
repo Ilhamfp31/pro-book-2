@@ -35,7 +35,7 @@ class SoapHelper {
 
     public function getRecommendation($categories) {
         if (!is_array($categories)) {
-            $categories = explode('/', $categories);
+            $categories = array_map('trim', explode('/', $categories));
         }
         $data = $this->conn->getRecommendation($categories);
         $array = json_decode(json_encode($data), True);

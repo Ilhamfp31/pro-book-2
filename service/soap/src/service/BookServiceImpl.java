@@ -49,6 +49,7 @@ public class BookServiceImpl implements BookService {
         bookRepository.connect();
         DaftarPenjualan daftarPenjualan = new DaftarPenjualan("undefined", "undefined", -1, 0);
         for (String category : categories) {
+            System.out.println("KATEGORI: "+ category);
             try {
                 DaftarPenjualan largest_penjualan = bookRepository.getLargestByCategory(category);
                 if (largest_penjualan.getJumlah() > daftarPenjualan.getJumlah()) {
