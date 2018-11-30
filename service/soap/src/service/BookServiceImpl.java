@@ -123,6 +123,9 @@ public class BookServiceImpl implements BookService {
             book.setPrice(daftarHarga.getHarga());
         }
         bookRepository.disconnect();
+        if (book == null) {
+            return new Book();
+        }
         return book;
     }
 
