@@ -64,7 +64,6 @@ class Detail extends Controller
         $model_user = $this->model('User');
         $soap = $this->model('SoapHelper');
         $entityBody = json_decode(file_get_contents('php://input'), true);
-        //TODO MASUKKIN KARTU NASABAH ID
         $user = $model_user->readUserById($user_id);
         $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], $user['no_kartu'], $entityBody['token']);
         if ($orderid != -1) {
