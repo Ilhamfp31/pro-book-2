@@ -35,10 +35,10 @@ public class HelloWorld {
     public static void main(String[] argv) {
 
 //       //         test getBookByTitle
-        ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
-        ArrayList<Book> testGetBookByCategory = getBookByCategory("Cooking");
-        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
-        System.out.println("\n\n Test balikan2, Judul:" + testGetBookByCategory.get(0).getTitle());
+//        ArrayList<Book> testGetBookByTitle = getBookByTitle("kue");
+//        ArrayList<Book> testGetBookByCategory = getBookByCategory("Cooking");
+//        System.out.println("\n\n Test balikan1, Judul:" + testGetBookByTitle.get(0).getTitle());
+//        System.out.println("\n\n Test balikan2, Judul:" + testGetBookByCategory.get(0).getTitle());
 //
 //        //       test getBookDetailByID
 //        Book testGetBookDetailByID = getBookDetailByID("Xl9nDwAAQBAJ");
@@ -46,31 +46,31 @@ public class HelloWorld {
 
 
         // test BookRepository
-        DaftarHarga dummyDaftarHarga1 = new DaftarHarga("napeDwAAQBAJ", 130000);
-        DaftarPenjualan dummyDaftarPejualan1 = new DaftarPenjualan("napeDwAAQBAJ", "Cooking", 3); // test daftar baru
-        DaftarPenjualan dummyDaftarPejualan2 = new DaftarPenjualan("Xl9nDwAAQBAJ", "Cooking", 1); // test daftar yang sudah ada
-        BookRepository testBookRepository = new BookRepository();
-        try {
-            testBookRepository.connect();
-            DaftarHarga test1 = testBookRepository.getDaftarHarga("Xl9nDwAAQBAJ");
-            System.out.println("\nTest\nHarga buku: " + test1.getHarga());
-
-            test1 = testBookRepository.getDaftarHarga("tubeswbdacac");
-            System.out.println("\nTest\nHarga buku: " + test1.getHarga());
-
-            DaftarPenjualan test2 = testBookRepository.getDaftarPenjualan("Xl9nDwAAQBAJ");
-            System.out.println("\nTest\nJumlah penjualan buku: " + test2.getJumlah());
-
-            testBookRepository.insertDaftarHarga(dummyDaftarHarga1);
-            testBookRepository.insertDaftarPenjualan(dummyDaftarPejualan1);
-            testBookRepository.insertDaftarPenjualan(dummyDaftarPejualan2);
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            testBookRepository.disconnect();
-        }
+//        DaftarHarga dummyDaftarHarga1 = new DaftarHarga("napeDwAAQBAJ", 130000);
+//        DaftarPenjualan dummyDaftarPejualan1 = new DaftarPenjualan("napeDwAAQBAJ", "Cooking", 3); // test daftar baru
+//        DaftarPenjualan dummyDaftarPejualan2 = new DaftarPenjualan("Xl9nDwAAQBAJ", "Cooking", 1); // test daftar yang sudah ada
+//        BookRepository testBookRepository = new BookRepository();
+//        try {
+//            testBookRepository.connect();
+//            DaftarHarga test1 = testBookRepository.getDaftarHarga("Xl9nDwAAQBAJ");
+//            System.out.println("\nTest\nHarga buku: " + test1.getHarga());
+//
+//            test1 = testBookRepository.getDaftarHarga("tubeswbdacac");
+//            System.out.println("\nTest\nHarga buku: " + test1.getHarga());
+//
+//            DaftarPenjualan test2 = testBookRepository.getDaftarPenjualan("Xl9nDwAAQBAJ");
+//            System.out.println("\nTest\nJumlah penjualan buku: " + test2.getJumlah());
+//
+//            testBookRepository.insertDaftarHarga(dummyDaftarHarga1);
+//            testBookRepository.insertDaftarPenjualan(dummyDaftarPejualan1);
+//            testBookRepository.insertDaftarPenjualan(dummyDaftarPejualan2);
+//
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            testBookRepository.disconnect();
+//        }
 
 
 //        System.out.println(WebServiceBankApi.transfer("5276132361916817", "5285983471586166", 7535644F));
@@ -83,7 +83,7 @@ public class HelloWorld {
         String address2 = "http://localhost:9000/BookService";
         Endpoint.publish(address2, implementor2);
 
-        System.out.println(((BookServiceImpl) implementor2).buyBook("NP1wDwAAQBAJ", 100, "5325129205703212"));
+//        System.out.println(((BookServiceImpl) implementor2).buyBook("NP1wDwAAQBAJ", 25, "5562991563901817"));
     }
 
 }

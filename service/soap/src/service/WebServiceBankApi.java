@@ -12,7 +12,7 @@ import java.net.URL;
 public class WebServiceBankApi {
     private static final String url = "http://localhost:3000/transfer";
 
-    public static Boolean transfer(String pengirim, String penerima, Float jumlah) {
+    public static Boolean transfer(String pengirim, String penerima, Float jumlah, String token) {
         URL object = null;
         try {
             object = new URL(WebServiceBankApi.url);
@@ -39,6 +39,7 @@ public class WebServiceBankApi {
         request.put("no_pengirim", pengirim);
         request.put("no_penerima", penerima);
         request.put("jumlah", jumlah);
+        request.put("token", token);
 
         OutputStreamWriter wr = null;
         try {
@@ -57,8 +58,7 @@ public class WebServiceBankApi {
         }
         if (HttpResult == HttpURLConnection.HTTP_OK) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
 

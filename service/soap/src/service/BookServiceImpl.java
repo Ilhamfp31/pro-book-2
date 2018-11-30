@@ -76,7 +76,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public long buyBook(String idBuku, Integer jumlah, String norek) {
+    public long buyBook(String idBuku, Integer jumlah, String norek, String token) {
 
         BookRepository bookRepository = new BookRepository();
         bookRepository.connect();
@@ -92,7 +92,7 @@ public class BookServiceImpl implements BookService {
             return -1;
         }
 
-        if (WebServiceBankApi.transfer(norek, BookServiceImpl.norek_juragan, (float) (jumlah*harga.getHarga()))) {
+        if (WebServiceBankApi.transfer(norek, BookServiceImpl.norek_juragan, (float) (jumlah*harga.getHarga()), token)) {
             Book book = GoogleBooksApi.getBookDetailByID(idBuku);
             DaftarPenjualan penjualan = new DaftarPenjualan(book.getId(), book.getCategory(), jumlah);
             try {
