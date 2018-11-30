@@ -12,6 +12,17 @@ module.exports = {
         });
     },
 
+    getKeyByCard: function(card_num, callback) {
+        connection.query('SELECT secret_key FROM nasabah WHERE no_kartu = ? LIMIT 1', card_num, function (error, rows, fields) {
+            if (error) {
+                return callback(error);
+            }
+            else {
+                return callback(null, rows);
+            }
+        });
+    },
+
     updateBalanceByCard: function(card_receiver, card_sender, receiver_new_balance, sender_new_balance, callback) {
         connection.getConnection(function(error, conn) {
             if (error) {

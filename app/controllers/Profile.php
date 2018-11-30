@@ -3,13 +3,10 @@
 class Profile extends Controller
 {
     public function index()
-    {
-		if (!isset($_SESSION)) {
-            session_start();            
-		}
-		
+    {	
     	if (isset($_COOKIE['access_token'])) {
-            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+            $user_id = $this->model('Token')->validateToken($_COOKIE['access_token']);
+            if ($user_id) {
                 $access_valid = true;
             } else {
                 $access_valid = false;
@@ -22,7 +19,7 @@ class Profile extends Controller
             header('Location: /login');
         }
         else {
-            $data = $this->model("User")->readUserById($_COOKIE['id']);
+            $data = $this->model("User")->readUserById($user_id);
             $data["navigation"] = "Profile";
         	$this->view("profile",$data);
         }
@@ -30,10 +27,9 @@ class Profile extends Controller
 
      public function edit()
     {
-		session_start();
-
+        $id_user = $this->model('Token')->validateToken($_COOKIE['access_token']);
 		if (isset($_COOKIE['access_token'])) {
-            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+            if ($id_user) {
                 $access_valid = true;
             } else {
                 $access_valid = false;
@@ -46,7 +42,7 @@ class Profile extends Controller
             header('Location: /login');
             exit();
         } else {
-	        $data = $this->model("User")->readUserById($_COOKIE['id']);
+	        $data = $this->model("User")->readUserById($id_user);
 	        $data["navigation"] = "Profile";
 	        $this->view("editprofile", $data);
         }
@@ -67,7 +63,7 @@ class Profile extends Controller
         }
 
       	if ($access_valid){
-	    	$user['id'] = $_COOKIE['id'];
+	    	$user['id'] = $user_id;
 	        $user['name'] = $_POST['name'];
 	        $user['address'] = $_POST['address'];
 	        $user['phone'] = $_POST['phone'];

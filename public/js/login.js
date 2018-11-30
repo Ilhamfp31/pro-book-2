@@ -33,4 +33,22 @@ document.querySelector("#password input").addEventListener("input", function() {
         pass_valid = true;
     }
     toggle_btn();
-})
+});
+
+function onSignIn(googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            window.location="/home";
+        }
+        else {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut();
+        }
+    }
+
+    xhr.open('POST', '/login/tokensignin');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({id_token: id_token}));
+}

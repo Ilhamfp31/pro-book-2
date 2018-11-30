@@ -66,9 +66,9 @@ class Detail extends Controller
         $entityBody = json_decode(file_get_contents('php://input'), true);
         //TODO MASUKKIN KARTU NASABAH ID
         $user = $model_user->readUserById($user_id);
-        $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], $user['no_kartu']);
+        $orderid = $soap->buyBook($_COOKIE['bookid'], $entityBody['total'], $user['no_kartu'], $entityBody['token']);
         if ($orderid != -1) {
-            $orderid = $model->createOrder($_COOKIE['bookid'], $user_id, $orderid);
+            $model->createOrder($_COOKIE['bookid'], $user_id, $orderid);
         }
         echo $orderid;
 

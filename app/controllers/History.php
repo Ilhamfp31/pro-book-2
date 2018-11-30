@@ -8,7 +8,8 @@ class History extends Controller
         }
         
         if (isset($_COOKIE['access_token'])) {
-            if ($this->model('Token')->validateToken($_COOKIE['access_token'])) {
+            $id_user = $this->model('Token')->validateToken($_COOKIE['access_token']);
+            if ($id_user) {
                 $access_valid = true;
             } else {
                 $access_valid = false;
@@ -22,7 +23,7 @@ class History extends Controller
             exit();
         }
         else {
-            $data['data'] = $this->model("Order")->readHistoryByUserId($_COOKIE['id']);
+            $data['data'] = $this->model("Order")->readHistoryByUserId($id_user);
             if (count($data) > 0){
             	$data["navigation"] = "History";
                 $this->view("history", $data);

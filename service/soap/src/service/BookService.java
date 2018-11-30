@@ -22,7 +22,7 @@ public interface BookService {
     Book getRecommendation(String... categories);
 
     @WebMethod
-    long buyBook(String idBuku, Integer jumlah, String norek);
+    long buyBook(String idBuku, Integer jumlah, String norek, String token);
 
     @WebMethod
     Book getBookDetailByID(String idBuku) throws SQLException;

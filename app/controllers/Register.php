@@ -45,7 +45,6 @@ class Register extends Controller
             }
 
             $id = $model->readUserIdByUsername($user['username'])['userID'];
-            setcookie('id', $id, time() + 3600,'/');
             $token = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1).substr(md5(time()),1);
 
             setcookie('access_token', $token , time() + 1800, '/');

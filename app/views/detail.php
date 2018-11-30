@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Detail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id" content="1039450104464-p0bpievqv6nfcbhrcvbl2vrdkg7jgnnk.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/main.css" />
 </head>
 <body>
@@ -52,6 +53,11 @@
                     <?php } ?>
                 </select>
             </div>
+                <label for="token" class="inp">
+                  <input type="text" id="token" placeholder="&nbsp;">
+                  <span class="label">Token</span>
+                  <span class="border"></span>
+                </label>
             <button onclick="order()" <?php if ($data['book']['price'] == -1) {echo "disabled";}?>>Order</button>
         </section>
         <section id="reviews">
@@ -98,12 +104,25 @@
         <div id="dialog-msg">
             <img id="check-notif" src="/public/images/check.png">
             <div id="msg-detail">
-                <p>Pemesanan Berhasil!</p>
+                <p id="text-msg-detail">Pemesanan Berhasil!</p>
                 <p>Nomor Transaksi : <span id="transaction-number">3<span></p>
             </div>
             <img id="close-notif" onclick="close_notif()" src="/public/images/close.png">
         </div>
     </div>
     <script src="/public/js/detail.js"></script>
+    <script>
+        function onLoad() {
+            gapi.load('auth2', function() {
+            gapi.auth2.init();
+            });
+        }        
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
 </body>
 </html>
