@@ -112,20 +112,20 @@ public class BookRepository {
         }
     }
 
-    public DaftarPenjualan getDaftarPenjualan(String id_buku) throws SQLException {
+    public DaftarPenjualan getDaftarPenjualan(int id) throws SQLException {
         if (connection == null) {
             this.connect();
         }
         Statement st = connection.createStatement();
-        DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1);
-
+        DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1, 0);
         try {
-            String query = "SELECT * FROM daftar_penjualan where id_buku = \"" + id_buku + "\";";
+            String query = "SELECT * FROM daftar_penjualan where id_daftar_penjualan = " + id + ";";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 answer.setId_buku(rs.getString("id_buku"));
                 answer.setKategori(rs.getString("kategori"));
                 answer.setJumlah(rs.getInt("jumlah"));
+                answer.setTimestamp(rs.getLong("timestamp"));
             }
         } catch (Exception e) {
             System.err.println("Got an exception! ");
@@ -165,7 +165,7 @@ public class BookRepository {
             this.connect();
         }
         Statement st = connection.createStatement();
-        DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1);
+        DaftarPenjualan answer = new DaftarPenjualan(STRING_UNDEFINED, STRING_UNDEFINED, -1, 0);
 
         try {
             String query = "SELECT * FROM daftar_penjualan WHERE LOWER(kategori) LIKE LOWER(\"" + category + "\") ORDER BY jumlah DESC LIMIT 1;";
@@ -174,6 +174,7 @@ public class BookRepository {
                 answer.setId_buku(rs.getString("id_buku"));
                 answer.setKategori(rs.getString("kategori"));
                 answer.setJumlah(rs.getInt("jumlah"));
+                answer.setTimestamp(rs.getLong("timestamp"));
             }
         } catch (Exception e) {
             System.err.println("Got an exception! ");
