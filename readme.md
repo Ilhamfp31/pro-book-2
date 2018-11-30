@@ -24,6 +24,11 @@ Melakukan *upgrade* Website toko buku online pada Tugas 1 dengan mengaplikasikan
 ## Pembangkitan Token dan Expiry Time
 
 ## Kelebihan Microservice dibanding Monolitik
+- Untuk setiap service nya, kompleksitas dapat berkurang dengan mendekomposisi program menjadi berbagai service sehingga setiap service nya lebih mudah didevelop, dimengerti karena sesuai fungsionalitasnya, dan dimaintain.
+- Setiap service dapat dijalankan secara independen sehingga tidak bergantung kepada bagian program lain yang tidak berhubungan.
+- Dapat memudahkan dalam menggunakan teknologi/implementasi baru yang berbeda untuk setiap service nya.
+- Memudahkan skalabilitas setiap service nya secara independen.
+- Kegagalan satu bagian program tertentu tidak mempengaruhi service lain dalam microservice, sedangkan dalam monolitik dapat menggagalkan program lain yang seharusnya tidak berhubungan.
 
 ## Pembagian Tugas
 
