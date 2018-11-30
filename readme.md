@@ -98,6 +98,7 @@ Basis data **Web Service Buku** kami terdiri dari 2 Tabel yaitu :
 ## Shared Session dengan REST
 
 ## Pembangkitan Token dan Expiry Time
+Pembangkitan token kami lakukan setiap kali user login. Setiap user login, kami memilih sebuah karakter [a-z && A-Z] random yang kemudian disambung dengan 31 karakter hasil hashing dari banyaknya detik sejak 1 Januari 1970. Kemudian kami menyimpan token yang telah dibangkitkan tersebut bersama dengan browser, ip address, dan expiry time token pada database. Expiry time token adalah 1200 detik sejak token pertama kali dimasukkan ke database.
 
 ## Kelebihan Microservice dibanding Monolitik
 - Untuk setiap service nya, kompleksitas dapat berkurang dengan mendekomposisi program menjadi berbagai service sehingga setiap service nya lebih mudah didevelop, dimengerti karena sesuai fungsionalitasnya, dan dimaintain.
@@ -133,6 +134,6 @@ Perubahan Web app :
 8. Update DB dan Token : 13516140
 
 Bonus :
-1. HTOTP : 13516140
+1. Time-based One-Time Password : 13516140
 2. Google : 13516089
 
