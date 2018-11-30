@@ -18,7 +18,6 @@ class Order extends Model
         }
         $soap = new SoapHelper();
         foreach ($results as $key -> $value) {
-            $data = []
             $data['book'] = $soap->getBookByID($results[$key]['bookID']);
             $data['order'] = $soap->getTransactionByID($results[$key]['orderID']);
             $results[$key]['date'] = $data['order']['timestamp'];
