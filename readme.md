@@ -101,12 +101,18 @@ REST sesuai namanya, Representational state transfer, tidak memiliki state atau 
 ## Pembangkitan Token dan Expiry Time
 Pembangkitan token kami lakukan setiap kali user login. Setiap user login, kami memilih 1 karakter [a-z && A-Z] random yang kemudian disambung dengan 31 karakter hasil hashing md5 dari banyaknya detik sejak 1 Januari 1970. Kemudian kami menyimpan token yang telah dibangkitkan tersebut bersama dengan browser, ip address, dan expiry time token pada database. Expiry time token adalah 1200 detik sejak token pertama kali dimasukkan ke database.
 
-## Kelebihan Microservice dibanding Monolitik
+## Kelebihan dan Kekurangan Microservice dibanding Monolitik
+**Kelebihan**
 - Untuk setiap service nya, kompleksitas dapat berkurang dengan mendekomposisi program menjadi berbagai service sehingga setiap service nya lebih mudah didevelop, dimengerti karena sesuai fungsionalitasnya, dan dimaintain.
 - Setiap service dapat dijalankan secara independen sehingga tidak bergantung kepada bagian program lain yang tidak berhubungan.
 - Dapat memudahkan dalam menggunakan teknologi/implementasi baru yang berbeda untuk setiap service nya.
 - Memudahkan skalabilitas setiap service nya secara independen.
 - Kegagalan satu bagian program tertentu tidak mempengaruhi service lain dalam microservice, sedangkan dalam monolitik dapat menggagalkan program lain yang seharusnya tidak berhubungan.
+
+**Kekurangan**
+- Deployment yang kompleks, diperlukan konfigurasi untuk setiap service karena setiap service memiliki runtime yang berbeda
+- Sulit dilakukan migrasi dari monolitik ke microservice
+- Sangat diperlukan automation untuk testing dan deployment nya
 
 ## Pembagian Tugas
 
