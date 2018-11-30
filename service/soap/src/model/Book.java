@@ -38,6 +38,10 @@ public class Book implements Serializable {
     }
 
     public Book(){
+        this.id = "-1";
+        this.title = "-";
+        this.author = "-";
+        this.description = "-";
         this.price = -1;
     }
 
