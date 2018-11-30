@@ -18,7 +18,7 @@ class Order extends Model
             $results[$key]['reviewID'] = ($this->conn->query($sql) -> fetch_assoc());
             $data['book'] = $soap->getBookByID($results[$key]['bookID']);
             $data['order'] = $soap->getTransactionByID($results[$key]['orderID']);
-            $results[$key]['date'] = $data['order']['timestamp'];
+            $results[$key]['date'] = date("Y-m-d H:i:s", substr((string) ($data['order']['timestamp']), 0, 10));
             $results[$key]['quantity'] = $data['order']['jumlah'];
             $results[$key]['bookPicture'] = $data['book']['bookPicture'];
             $results[$key]['title'] = $data['book']['title'];
