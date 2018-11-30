@@ -7,6 +7,7 @@ import javax.xml.ws.Response;
 
 import model.Book;
 import model.BooksWrapper;
+import model.DaftarPenjualan;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -26,4 +27,7 @@ public interface BookService {
 
     @WebMethod
     Book getBookDetailByID(String idBuku) throws SQLException;
+
+    @WebMethod
+    DaftarPenjualan getTransactionByID(int id);
 }

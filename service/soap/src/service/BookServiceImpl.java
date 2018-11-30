@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService {
         Book book = new Book();
         BookRepository bookRepository = new BookRepository();
         bookRepository.connect();
-        DaftarPenjualan daftarPenjualan = new DaftarPenjualan("undefined", "undefined", -1);
+        DaftarPenjualan daftarPenjualan = new DaftarPenjualan("undefined", "undefined", -1, 0);
         for (String category : categories) {
             try {
                 DaftarPenjualan largest_penjualan = bookRepository.getLargestByCategory(category);
@@ -94,7 +94,7 @@ public class BookServiceImpl implements BookService {
 
         if (WebServiceBankApi.transfer(norek, BookServiceImpl.norek_juragan, (float) (jumlah*harga.getHarga()), token)) {
             Book book = GoogleBooksApi.getBookDetailByID(idBuku);
-            DaftarPenjualan penjualan = new DaftarPenjualan(book.getId(), book.getCategory(), jumlah);
+            DaftarPenjualan penjualan = new DaftarPenjualan(book.getId(), book.getCategory(), jumlah, 0);
             try {
                 long idPenjualan = bookRepository.insertDaftarPenjualan(penjualan);
                 bookRepository.disconnect();
@@ -124,5 +124,19 @@ public class BookServiceImpl implements BookService {
         }
         bookRepository.disconnect();
         return book;
+    }
+
+    @Override
+    public DaftarPenjualan getTransactionByID(int id) {
+        BookRepository bookRepository = new BookRepository();
+        bookRepository.connect();
+        DaftarPenjualan daftarPenjualan = new DaftarPenjualan();
+        try {
+            daftarPenjualan = bookRepository.getDaftarPenjualan(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        bookRepository.disconnect();
+        return daftarPenjualan;
     }
 }
