@@ -5,8 +5,8 @@ class Order extends Model
     function readHistoryByUserId($id)
     {
 
-        $sql = "SELECT orderID, bookID FROM wbdprobook.orders WHERE userID = " . $id . " ORDER BY id DESC;";
-        $result = $this->conn->query($sql);
+        $sql = "SELECT orderID, bookID FROM orders WHERE userID = " . $id . " ORDER BY id DESC;";
+        $result = $this->conn->query($sql) or die($conn->error);
         $results = [];
         while ($row = $result->fetch_assoc()) {
             $results[] = $row;
@@ -14,7 +14,7 @@ class Order extends Model
         require_once ('app/models/SoapHelper.php');
         $soap = new SoapHelper();
         foreach ($results as $key => $value) {
-            $sql = "SELECT reviewID FROM wbdprobook.review WHERE orderID = '". $results[$key]['orderID'] ."';";
+            $sql = "SELECT reviewID FROM review WHERE orderID = '". $results[$key]['orderID'] ."';";
             $results[$key]['reviewID'] = ($this->conn->query($sql) -> fetch_assoc());
             $data['book'] = $soap->getBookByID($results[$key]['bookID']);
             $data['order'] = $soap->getTransactionByID($results[$key]['orderID']);
