@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.3.10-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.13  Distrib 5.7.21, for osx10.13 (x86_64)
 --
 -- Host: localhost    Database: wbdprobook
 -- ------------------------------------------------------
--- Server version	10.3.10-MariaDB
+-- Server version	5.7.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -76,15 +76,13 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
-  `orderID` int(11) NOT NULL AUTO_INCREMENT,
-  `bookID` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bookID` varchar(50) DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`orderID`),
+  `orderID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_orders_bookID_book_bookID` (`bookID`),
   KEY `fk_orders_userID_user_userID` (`userID`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`bookID`) REFERENCES `book` (`bookID`),
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -166,4 +164,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-30  0:34:47
+-- Dump completed on 2018-11-30 16:43:59
